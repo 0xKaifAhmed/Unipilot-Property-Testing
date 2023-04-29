@@ -3,36 +3,97 @@ pragma solidity ^0.7.6;
 pragma abicoder v2;
 
 import "./testUnipilot.sol";
-import "../interfaces/IUnipilotVault.sol";
+import "../dependencies/libraries/SafeMath.sol";
+import { UnipilotActiveVault } from "../UnipilotActiveVault.sol";
 
 contract UnipilotFuzz is testUnipiot {
+    using SafeMath for uint256;
+
     address t0;
     address t1;
-    IUnipilotVault UAV;
+    UnipilotActiveVault public UAV;
+
     event notmytoken(address);
 
-    function gettokens() public {
+    function FeeTier() private view returns (uint24) {
+        uint24 LOW = 500; // 0.05% fee tier
+        uint24 MEDIUM = 3000; // 0.30% fee tier
+        uint24 HIGH = 10000; // 1.00% fee tier
+
+        uint256 rand = uint256(
+            keccak256(
+                abi.encodePacked(block.timestamp, block.difficulty, msg.sender)
+            )
+        ) % 3;
+
+        if (rand == 0) {
+            return LOW;
+        } else if (rand == 1) {
+            return MEDIUM;
+        } else {
+            return HIGH;
+        }
+    }
+
+    function gettokens() private {
         (t0, t1) = createToken(msg.sender);
     }
 
-    function testAddress(
-        uint16 _vaultStrategy,
-        uint160 _sqrtPriceX96,
-        uint24 fee
+    function encodePriceSqrt(
+        uint256 reserve1,
+        uint256 reserve0
+    ) private pure returns (uint160 encodedPriceSqrt) {
+        uint256 priceSqrt = SafeMath
+            .sqrt(reserve1.mul(1e18).div(reserve0))
+            .mul(2 ** 96)
+            .div(1e9);
+        encodedPriceSqrt = uint160(priceSqrt);
+    }
+
+    event here(string);
+    event fee(uint24);
+    event Sqrt(uint160);
+
+    //Createting UnipilotActiveVault using UnipilotActiveFactory
+    //Arbitary (valid in range) values been sent by echidna to fuzz different scenarios
+    function testAddressValidity(
+        uint256 amount0,
+        uint256 amount1,
+        uint16 _vaultStrategy
     ) public {
-        require(t0 != address(0));
+        uint160 _sqrtPriceX96 = encodePriceSqrt(amount0, amount1);
+        gettokens();
+        uint24 fees = FeeTier();
+        require(t0 != address(0) && _vaultStrategy < 5, "TV");
+        emit Sqrt(_sqrtPriceX96);
         address vault = UAF.createVault(
             address(t0),
             address(t1),
-            fee,
+            fees,
             _vaultStrategy,
             _sqrtPriceX96,
-            "test",
-            "tst"
+            "Fuzz",
+            "fuzz"
         );
 
         assert(vault != address(0));
-        UAV = IUnipilotVault(vault);
+        UAV = UnipilotActiveVault(payable(vault));
+    }
+
+    /*
+    Depositing tokens should increase the total supply of LP tokens and the balance of the 
+    contract in both token0 and token1:
+    This invariant ensures that the deposit function is working as intended. When tokens 
+    are deposited into the contract, the total supply of LP tokens should increase, and the 
+    balance of the contract in both token0 and token1 should also increase by the appropriate 
+    amounts. This invariant should be checked after every deposit.
+    */
+    function testLpIncrease(uint256 amount0, uint256 amount1) public {
+        uint256 preLP = UAV._totalSupply();
+        emit here("here");
+        UAV.deposit(amount0, amount1, msg.sender);
+        uint256 postLP = UAV._totalSupply();
+        assert(preLP < postLP);
     }
 }
 
@@ -50,13 +111,6 @@ uniswap and make a bat while depositing the same amount through unipilot should 
 This invariant ensures that the LP tokens minted through Unipilot are accurately reflecting 
 the balance of token0 and token1 in the Unipilot position on Uniswap, and that there are no 
 discrepancies or unexpected errors in the calculation.
-
-Depositing tokens should increase the total supply of LP tokens and the balance of the 
-contract in both token0 and token1:
-This invariant ensures that the deposit function is working as intended. When tokens 
-are deposited into the contract, the total supply of LP tokens should increase, and the 
-balance of the contract in both token0 and token1 should also increase by the appropriate 
-amounts. This invariant should be checked after every deposit.
 
 Withdrawing LP tokens should decrease the total supply of LP tokens and the balance of 
 the contract in both token0 and token1, and should result in the correct amounts of token0 
