@@ -90,7 +90,7 @@ contract UnipilotFuzz is testUnipiot {
     */
     function testLpIncrease(uint256 amount0, uint256 amount1) public {
         uint256 preLP = UAV._totalSupply();
-        emit here("here");
+        require(amount0 >= 1 ether || amount1 >= 1 ether, "Saving From ML");
         UAV.deposit(amount0, amount1, msg.sender);
         uint256 postLP = UAV._totalSupply();
         assert(preLP < postLP);
