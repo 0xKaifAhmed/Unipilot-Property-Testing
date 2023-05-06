@@ -15,7 +15,7 @@ contract indexfund {
 }
 
 
-contract testUnipiot {
+contract SetupUAF {
     UniswapV3Factory factory;
     UnipilotActiveFactory public UAF;
     UnipilotStrategy ST;

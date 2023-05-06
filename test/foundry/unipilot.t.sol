@@ -3,18 +3,20 @@ pragma solidity 0.7.6;
 pragma abicoder v2;
 
 import "forge-std/Test.sol";
-import "../../contracts/foundry/testSetup.sol";
+import "../../contracts/foundry/SetupUAV.sol";
 import "../../contracts/foundry/Token.sol";
 
+// import "@uniswap/v3-core/contracts/libraries/SqrtPriceMath.sol";
+
 contract Fuzz is Test {
-    UnipilotFuzz fuzz;
+    SetupUAV fuzz;
     Token token0;
     Token token1;
 
     function setUp() public {
         token0 = new Token(address(this));
         token1 = new Token(address(this));
-        fuzz = new UnipilotFuzz();
+        fuzz = new SetupUAV();
         fuzz.testInit(address(token0), address(token1), 1, 1, 1);
     }
 
@@ -67,8 +69,7 @@ contract Fuzz is Test {
     function testMain(uint256 amount0, uint256 amount1) public {
         console.log("Address", address(fuzz.UAV()));
         require(address(fuzz.UAV()) != address(0), "Contract not created");
-        mintTokens();
-        invariant_checkLpSupplyBeforeAndAfterWithdraw(amount0, amount1);
+        invariant_MintedLpAreSameAsUnipilot(amount0, amount1);
     }
 
     /*
@@ -128,12 +129,70 @@ This invariant should be checked after every withdrawal.
         assert(preLP > postLP);
     }
 
-    // function invariant_MintedLpAreSameAsUnipilot() public {
-    //     //todo
-    //     //calculate LP shares of amount getting deposite according to previous deposits
-    //     //then actually deposit that amount an check if you get the same amount
-    //     //if yes invariants holds
-    //     //if no you made a mistake :p
-    // }
-    
+    event lpShare(uint256);
+
+    function invariant_MintedLpAreSameAsUnipilot(
+        uint256 Amount0,
+        uint256 Amount1
+    ) public {
+        //PreConditions
+        Amount0 = bound(Amount0, 1 ether, 1e10 ether);
+        Amount1 = bound(Amount1, 1 ether, 1e10 ether);
+        require(Amount0 >= 1 ether && Amount1 >= 1 ether, "Saving From ML");
+        require(address(token0) != address(0), "Mint tokens First");
+
+        //calculate LP shares of amount getting deposite according to previous deposits
+        uint256 bal0 = token0.balanceOf(address(fuzz.UAV()));
+        uint256 bal1 = token1.balanceOf(address(fuzz.UAV()));
+        (uint256 Selflp, , ) = calculateShare(
+            Amount0,
+            Amount1,
+            bal0,
+            bal1,
+            fuzz.UAV()._totalSupply()
+        );
+
+        //then actually deposit that amount
+        mintTokens();
+        uint256 Unipilotlp = Deposit(Amount0, Amount1, address(this));
+
+        //check if you get the same amount
+        emit lpShare(Selflp);
+        emit lpShare(Unipilotlp);
+        assertEq(Selflp, Unipilotlp);
+
+        //if yes invariants holds
+        //if no you made a mistake :p
+    }
+
+    function calculateShare(
+        uint256 amount0Max,
+        uint256 amount1Max,
+        uint256 reserve0,
+        uint256 reserve1,
+        uint256 totalSupply
+    ) internal pure returns (uint256 shares, uint256 amount0, uint256 amount1) {
+        if (totalSupply == 0) {
+            // For first deposit, just use the amounts desired
+            amount0 = amount0Max;
+            amount1 = amount1Max;
+            shares = amount0 > amount1 ? amount0 : amount1; // max
+        } else if (reserve0 == 0) {
+            amount1 = amount1Max;
+            shares = FullMath.mulDiv(amount1, totalSupply, reserve1);
+        } else if (reserve1 == 0) {
+            amount0 = amount0Max;
+            shares = FullMath.mulDiv(amount0, totalSupply, reserve0);
+        } else {
+            amount0 = FullMath.mulDiv(amount1Max, reserve0, reserve1);
+            if (amount0 < amount0Max) {
+                amount1 = amount1Max;
+                shares = FullMath.mulDiv(amount1, totalSupply, reserve1);
+            } else {
+                amount0 = amount0Max;
+                amount1 = FullMath.mulDiv(amount0, reserve1, reserve0);
+                shares = FullMath.mulDiv(amount0, totalSupply, reserve0);
+            }
+        }
+    }
 }

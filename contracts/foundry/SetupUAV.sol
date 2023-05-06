@@ -57,10 +57,10 @@ A - B = 0 , A = tickHigher - currentTick, B = currentTick - lowerTick ----- afte
 pragma solidity ^0.7.6;
 pragma abicoder v2;
 
-import "./testUnipilot.sol";
+import "./SetupUAF.sol";
 import { UnipilotActiveVault, IERC20 } from "../UnipilotActiveVault.sol";
 
-contract UnipilotFuzz is testUnipiot {
+contract SetupUAV is SetupUAF {
     UnipilotActiveVault public UAV;
     bool init;
 
