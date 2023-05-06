@@ -93,6 +93,8 @@ contract UnipilotActiveVault is ERC20Permit, IUnipilotVault {
 
     fallback() external payable {}
 
+    event balance(uint256);
+
     /// @inheritdoc IUnipilotVault
     function deposit(
         uint256 amount0Desired,
@@ -125,6 +127,9 @@ contract UnipilotActiveVault is ERC20Permit, IUnipilotVault {
             totalSupply,
             ticksData
         );
+
+        emit balance(_balance0());
+        emit balance(_balance1());
 
         if (totalSupply == 0) {
             // prevent first LP from stealing funds of subsequent LPs

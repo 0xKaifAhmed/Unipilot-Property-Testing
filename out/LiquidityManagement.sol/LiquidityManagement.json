@@ -1,0 +1,3460 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "WETH9",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "factory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "refundETH",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountMinimum",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "sweepToken",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0Owed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1Owed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "uniswapV3MintCallback",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountMinimum",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "unwrapWETH9",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "WETH9()": "4aa4a4fc",
+    "factory()": "c45a0155",
+    "refundETH()": "12210e8a",
+    "sweepToken(address,uint256,address)": "df2ab5bb",
+    "uniswapV3MintCallback(uint256,uint256,bytes)": "d3487997",
+    "unwrapWETH9(uint256,address)": "49404b7c"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"WETH9\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"factory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"refundETH\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountMinimum\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"sweepToken\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount0Owed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount1Owed\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"uniswapV3MintCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amountMinimum\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"unwrapWETH9\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"refundETH()\":{\"details\":\"Useful for bundling with mint or increase liquidity that uses ether, or exact output swaps that use ether for the input amount\"},\"sweepToken(address,uint256,address)\":{\"details\":\"The amountMinimum parameter prevents malicious contracts from stealing the token from users\",\"params\":{\"amountMinimum\":\"The minimum amount of token required for a transfer\",\"recipient\":\"The destination address of the token\",\"token\":\"The contract address of the token which will be transferred to `recipient`\"}},\"uniswapV3MintCallback(uint256,uint256,bytes)\":{\"details\":\"In the implementation you must pay the pool tokens owed for the minted liquidity. The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.\",\"params\":{\"amount0Owed\":\"The amount of token0 due to the pool for the minted liquidity\",\"amount1Owed\":\"The amount of token1 due to the pool for the minted liquidity\",\"data\":\"Any data passed through by the caller via the IUniswapV3PoolActions#mint call\"}},\"unwrapWETH9(uint256,address)\":{\"details\":\"The amountMinimum parameter prevents malicious contracts from stealing WETH9 from users.\",\"params\":{\"amountMinimum\":\"The minimum amount of WETH9 to unwrap\",\"recipient\":\"The address receiving ETH\"}}},\"title\":\"Liquidity management functions\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"refundETH()\":{\"notice\":\"Refunds any ETH balance held by this contract to the `msg.sender`\"},\"sweepToken(address,uint256,address)\":{\"notice\":\"Transfers the full amount of a token held by this contract to recipient\"},\"uniswapV3MintCallback(uint256,uint256,bytes)\":{\"notice\":\"Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint.\"},\"unwrapWETH9(uint256,address)\":{\"notice\":\"Unwraps the contract's WETH9 balance and sends it to recipient as ETH.\"}},\"notice\":\"Internal functions for safely managing liquidity in Uniswap V3\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/test/base/LiquidityManagement.sol\":\"LiquidityManagement\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@cryptoalgebra/=node_modules/@cryptoalgebra/\",\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@uniswap/=node_modules/@uniswap/\",\":base64-sol/=node_modules/base64-sol/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/test/base/LiquidityManagement.sol\":{\"keccak256\":\"0x453096c42d3735238b4edc3d43a2c6f815bfab42ba7a0fac86a5c1e2dd64b115\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://29cd9383d28d83d810d185b8628ba11fa5e2e9b2c64e3dbb8df62bd3fb5b5ff3\",\"dweb:/ipfs/QmdPhYBhMYhEuwPpvDCTijWqnAva1qgvNxzYCreKy48463\"]},\"contracts/test/base/PeripheryImmutableState.sol\":{\"keccak256\":\"0x8e8689548a0bac366e8a190bea21cbaabf99d91045e7e58e8f615bcf24a1baf7\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://722c5e2f60d788a8c67ba400e9f9437778b02035f2b849b860e1d272c1ba4c5e\",\"dweb:/ipfs/Qmar7UDCVzAKcQK1u3n8eY6trxnthdRRyCjxA2SfMBGFdU\"]},\"contracts/test/base/PeripheryPayments.sol\":{\"keccak256\":\"0xdd3c24c81fba6953ea9d85300f665cdb738894a677d6fede1cc3e9e0d1a57a44\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://2918494071226007a46cdfebecba6a2bbc336aaa269dd6d840bcacac03fa46ba\",\"dweb:/ipfs/Qmefiyw4zos8Dp2Leygs5vua7KEzy2hzG97ZUw6qixoP3j\"]},\"contracts/test/interfaces/IPeripheryImmutableState.sol\":{\"keccak256\":\"0x7affcfeb5127c0925a71d6a65345e117c33537523aeca7bc98085ead8452519d\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://e16b291294210e71cb0f20cd0afe62ae2dc6878d627f5ccc19c4dc9cd80aec3f\",\"dweb:/ipfs/QmQGitSyBr26nour81BZmpmDMyJpvZRqHQZvnCD1Acb127\"]},\"contracts/test/interfaces/IPeripheryPayments.sol\":{\"keccak256\":\"0x304c2150b73fadef367df2eea935a04df7a07606939f884a0d5e1c3d65f5d671\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://fdddfa1a23b77f433b450d09148600b1a6ff2cea18365026378d0b6c19bd5c95\",\"dweb:/ipfs/Qmb4ekGQUwm45YQrMVUTxKyuQu1MPbPQVW823rhS3jYZ16\"]},\"contracts/test/interfaces/external/IWETH9.sol\":{\"keccak256\":\"0x7dcf8005d026aff5f18afebe2c40b7089e74b55f6e0eb0ad37c36220f82316c4\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://8b78e4a92b9ecfb20b8c4c30ad45868eaf14d4be461eba0585b720d979a1ee9a\",\"dweb:/ipfs/QmdVz2eaMvRAPBDQpK6DLqv72znE8FBeAAGEhQW2bsujeH\"]},\"contracts/test/libraries/CallbackValidation.sol\":{\"keccak256\":\"0xaee9f0132856f43339967390c37c76dd1bc1972adf0daa03266956af43b5db9c\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://bc3e97da960ccf7b407897de467585844eb743ea15ea7dff2085e3089f6d6f3c\",\"dweb:/ipfs/QmUomhzxSeUfqfQEXUms2NWYZSXgcyGdyGHnkSLPKc4Cy4\"]},\"contracts/test/libraries/LiquidityAmounts.sol\":{\"keccak256\":\"0x955bc69f6e278e9dde6cdc1634d7275f1e9d02c1d81916800cdadb5d5a29f209\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://21fb4d568e5e0ea990fbbe828e291cd5f21295f25daa0dc5356dc3533807a639\",\"dweb:/ipfs/QmV2T9rZMbjXQ2wTe2kS1RaRuvuCF6QZpgk1SpYPFzqci6\"]},\"contracts/test/libraries/PoolAddress.sol\":{\"keccak256\":\"0x534b77e831b66519d1e52c7a21d3329832c21deefa35dec360f7604be2b8d9a2\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://95341ca07dd50acc9b4f881baff9fe7d725d087e4520662abfc3fac2a4ddd16c\",\"dweb:/ipfs/QmP2TfNARc25MVdp2ox3g45EygyrimfifbtB86mH9Yzkes\"]},\"contracts/test/libraries/TransferHelper.sol\":{\"keccak256\":\"0x325c5a058585f2a1ffe292a82b08fa77bccad9f02830aee1c7e7493189e600b8\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://3c3e1ae87de89ad8b2743b2a9a7f17234cad484fe6caf35321e1ae947ed7a92a\",\"dweb:/ipfs/QmeFixRMxvXBpT6rGrszU7TjDoVbv5HmQYUfecEArAPKRn\"]},\"node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xbd74f587ab9b9711801baf667db1426e4a03fd2d7f15af33e0e0d0394e7cef76\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2d0913dfbfce90d170df0d496ad7596c0778518e5fa7aba6c32562522546f66b\",\"dweb:/ipfs/QmR6B8nLj2PJf5e1JWD9Nk7ErkAwkqUwadCnvE82FJr1RU\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol\":{\"keccak256\":\"0xcc3d0c93fc9ac0febbe09f941b465b57f750bcf3b48432da0b97dc289cfdc489\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://b9379ad954680c44a0bc523b314ae4c4da735f9fe1d02aa56ea5bdba6f1136f2\",\"dweb:/ipfs/QmZXdgQNXKAckrXWz9R3mc47F1fvDvr28a2ewJrwNAw71B\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol\":{\"keccak256\":\"0xfe6113d518466cd6652c85b111e01f33eb62157f49ae5ed7d5a3947a2044adb1\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://1c42b9e6f5902ac38dd43e25750939baa7e0c1425dc75afd717c4412731065d5\",\"dweb:/ipfs/QmWaoacnzsucTvBME2o7YgZBZMhaHv7fkj83htHMVWJKWh\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol\":{\"keccak256\":\"0x27a9725b8f831a92d16380860c3d348a0b926a7f01b34a54ea6eea78cbdbcd6a\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://7c37ca742c643ca4ba6baadff72b8450c6e340a30f7fea0863dba74030a9bbc7\",\"dweb:/ipfs/QmeKBR6a7tQSX85Q7Lb2wrAWSEFqhC4tTmLo4SzcN3kFmp\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol\":{\"keccak256\":\"0x9453dd0e7442188667d01d9b65de3f1e14e9511ff3e303179a15f6fc267f7634\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://982f4328f956c3e60e67501e759eb292ac487f76460c774c50e9ae4fcc92aae5\",\"dweb:/ipfs/QmRnzEDsaqtd9PJEVcgQi7p5aV5pMSvRUoGZJAdwFUJxgZ\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol\":{\"keccak256\":\"0xe603ac5b17ecdee73ba2b27efdf386c257a19c14206e87eee77e2017b742d9e5\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://8febc9bdb399a4d94bb89f5377732652e2400e4a8dee808201ade6848f9004e7\",\"dweb:/ipfs/QmaKDqYYFU4d2W2iN77aDHptfbFmYZRrMYXHeGpJmM8C1c\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol\":{\"keccak256\":\"0x8071514d0fe5d17d6fbd31c191cdfb703031c24e0ece3621d88ab10e871375cd\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://d0b571930cc7488b1d546a7e9cea7c52d8b3c4e207da657ed0e0db7343b8cd03\",\"dweb:/ipfs/QmaGK6vVwB95QSTR1XMYvrh7ivYAYZxi3fD7v6VMA4jZ39\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol\":{\"keccak256\":\"0xf6e5d2cd1139c4c276bdbc8e1d2b256e456c866a91f1b868da265c6d2685c3f7\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://b99c8c9ae8e27ee6559e5866bea82cbc9ffc8247f8d15b7422a4deb287d4d047\",\"dweb:/ipfs/QmfL8gaqt3ffAnm6nVj5ksuNpLygXuL3xq5VBqrkwC2JJ3\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol\":{\"keccak256\":\"0x759b78a2918af9e99e246dc3af084f654e48ef32bb4e4cb8a966aa3dcaece235\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://64144fb96e1c7fdba87305acadb98a198d26a3d46c097cb3a666e567f6f29735\",\"dweb:/ipfs/QmUnWVwN9FKB9uV5Pr8YfLpWZnYM2DENnRMaadZ492JS9u\"]},\"node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol\":{\"keccak256\":\"0x852dc1f5df7dcf7f11e7bb3eed79f0cea72ad4b25f6a9d2c35aafb48925fd49f\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://ed63907c38ff36b0e22bc9ffc53e791ea74f0d4f0e7c257fdfb5aaf8825b1f0f\",\"dweb:/ipfs/QmSQrckghEjs6HVsA5GVgpNpZWvTXMY5eQLF7cN6deFeEg\"]},\"node_modules/@uniswap/v3-core/contracts/libraries/FixedPoint96.sol\":{\"keccak256\":\"0x0ba8a9b95a956a4050749c0158e928398c447c91469682ca8a7cc7e77a7fe032\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://186d3b528866065a5856f96d2aeec698efa99f8da913e9adf34f8cc296cc993d\",\"dweb:/ipfs/QmUAiMvtAQp8c9dy57bqJYzG7hkb1uChiPaQmt264skoqP\"]},\"node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol\":{\"keccak256\":\"0xe511530871deaef86692cea9adb6076d26d7b47fd4815ce51af52af981026057\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bc5a6ae776be3e7dcbd23d49ffbc9d792fed0ddf4b111ebb64b9bb2133ec263e\",\"dweb:/ipfs/QmbAUtWqvipzEARQpFpkzYKBELy3qeW5WXnZxHFU84sxG7\"]},\"node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol\":{\"keccak256\":\"0x1f864a2bf61ba05f3173eaf2e3f94c5e1da4bec0554757527b6d1ef1fe439e4e\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://5139b586df546a9d1c46804ca400b1cb9ce87236eaf212ebd64edee6747a172a\",\"dweb:/ipfs/QmVa2kcRw3VyuB6j1EVWXACKnkbQZgfXYXNi5voq3XkYG8\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "WETH9",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "factory",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "refundETH"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountMinimum",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "sweepToken"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount0Owed",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1Owed",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "uniswapV3MintCallback"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "amountMinimum",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "unwrapWETH9"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "payable",
+          "type": "receive"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "refundETH()": {
+            "details": "Useful for bundling with mint or increase liquidity that uses ether, or exact output swaps that use ether for the input amount"
+          },
+          "sweepToken(address,uint256,address)": {
+            "details": "The amountMinimum parameter prevents malicious contracts from stealing the token from users",
+            "params": {
+              "amountMinimum": "The minimum amount of token required for a transfer",
+              "recipient": "The destination address of the token",
+              "token": "The contract address of the token which will be transferred to `recipient`"
+            }
+          },
+          "uniswapV3MintCallback(uint256,uint256,bytes)": {
+            "details": "In the implementation you must pay the pool tokens owed for the minted liquidity. The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.",
+            "params": {
+              "amount0Owed": "The amount of token0 due to the pool for the minted liquidity",
+              "amount1Owed": "The amount of token1 due to the pool for the minted liquidity",
+              "data": "Any data passed through by the caller via the IUniswapV3PoolActions#mint call"
+            }
+          },
+          "unwrapWETH9(uint256,address)": {
+            "details": "The amountMinimum parameter prevents malicious contracts from stealing WETH9 from users.",
+            "params": {
+              "amountMinimum": "The minimum amount of WETH9 to unwrap",
+              "recipient": "The address receiving ETH"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "refundETH()": {
+            "notice": "Refunds any ETH balance held by this contract to the `msg.sender`"
+          },
+          "sweepToken(address,uint256,address)": {
+            "notice": "Transfers the full amount of a token held by this contract to recipient"
+          },
+          "uniswapV3MintCallback(uint256,uint256,bytes)": {
+            "notice": "Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint."
+          },
+          "unwrapWETH9(uint256,address)": {
+            "notice": "Unwraps the contract's WETH9 balance and sends it to recipient as ETH."
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@cryptoalgebra/=node_modules/@cryptoalgebra/",
+        ":@ensdomains/=node_modules/@ensdomains/",
+        ":@openzeppelin/=node_modules/@openzeppelin/",
+        ":@uniswap/=node_modules/@uniswap/",
+        ":base64-sol/=node_modules/base64-sol/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        ":forge-std/=lib/forge-std/src/",
+        ":hardhat/=node_modules/hardhat/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "contracts/test/base/LiquidityManagement.sol": "LiquidityManagement"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "contracts/test/base/LiquidityManagement.sol": {
+        "keccak256": "0x453096c42d3735238b4edc3d43a2c6f815bfab42ba7a0fac86a5c1e2dd64b115",
+        "urls": [
+          "bzz-raw://29cd9383d28d83d810d185b8628ba11fa5e2e9b2c64e3dbb8df62bd3fb5b5ff3",
+          "dweb:/ipfs/QmdPhYBhMYhEuwPpvDCTijWqnAva1qgvNxzYCreKy48463"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/base/PeripheryImmutableState.sol": {
+        "keccak256": "0x8e8689548a0bac366e8a190bea21cbaabf99d91045e7e58e8f615bcf24a1baf7",
+        "urls": [
+          "bzz-raw://722c5e2f60d788a8c67ba400e9f9437778b02035f2b849b860e1d272c1ba4c5e",
+          "dweb:/ipfs/Qmar7UDCVzAKcQK1u3n8eY6trxnthdRRyCjxA2SfMBGFdU"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/base/PeripheryPayments.sol": {
+        "keccak256": "0xdd3c24c81fba6953ea9d85300f665cdb738894a677d6fede1cc3e9e0d1a57a44",
+        "urls": [
+          "bzz-raw://2918494071226007a46cdfebecba6a2bbc336aaa269dd6d840bcacac03fa46ba",
+          "dweb:/ipfs/Qmefiyw4zos8Dp2Leygs5vua7KEzy2hzG97ZUw6qixoP3j"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/interfaces/IPeripheryImmutableState.sol": {
+        "keccak256": "0x7affcfeb5127c0925a71d6a65345e117c33537523aeca7bc98085ead8452519d",
+        "urls": [
+          "bzz-raw://e16b291294210e71cb0f20cd0afe62ae2dc6878d627f5ccc19c4dc9cd80aec3f",
+          "dweb:/ipfs/QmQGitSyBr26nour81BZmpmDMyJpvZRqHQZvnCD1Acb127"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/interfaces/IPeripheryPayments.sol": {
+        "keccak256": "0x304c2150b73fadef367df2eea935a04df7a07606939f884a0d5e1c3d65f5d671",
+        "urls": [
+          "bzz-raw://fdddfa1a23b77f433b450d09148600b1a6ff2cea18365026378d0b6c19bd5c95",
+          "dweb:/ipfs/Qmb4ekGQUwm45YQrMVUTxKyuQu1MPbPQVW823rhS3jYZ16"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/interfaces/external/IWETH9.sol": {
+        "keccak256": "0x7dcf8005d026aff5f18afebe2c40b7089e74b55f6e0eb0ad37c36220f82316c4",
+        "urls": [
+          "bzz-raw://8b78e4a92b9ecfb20b8c4c30ad45868eaf14d4be461eba0585b720d979a1ee9a",
+          "dweb:/ipfs/QmdVz2eaMvRAPBDQpK6DLqv72znE8FBeAAGEhQW2bsujeH"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/libraries/CallbackValidation.sol": {
+        "keccak256": "0xaee9f0132856f43339967390c37c76dd1bc1972adf0daa03266956af43b5db9c",
+        "urls": [
+          "bzz-raw://bc3e97da960ccf7b407897de467585844eb743ea15ea7dff2085e3089f6d6f3c",
+          "dweb:/ipfs/QmUomhzxSeUfqfQEXUms2NWYZSXgcyGdyGHnkSLPKc4Cy4"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/libraries/LiquidityAmounts.sol": {
+        "keccak256": "0x955bc69f6e278e9dde6cdc1634d7275f1e9d02c1d81916800cdadb5d5a29f209",
+        "urls": [
+          "bzz-raw://21fb4d568e5e0ea990fbbe828e291cd5f21295f25daa0dc5356dc3533807a639",
+          "dweb:/ipfs/QmV2T9rZMbjXQ2wTe2kS1RaRuvuCF6QZpgk1SpYPFzqci6"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/libraries/PoolAddress.sol": {
+        "keccak256": "0x534b77e831b66519d1e52c7a21d3329832c21deefa35dec360f7604be2b8d9a2",
+        "urls": [
+          "bzz-raw://95341ca07dd50acc9b4f881baff9fe7d725d087e4520662abfc3fac2a4ddd16c",
+          "dweb:/ipfs/QmP2TfNARc25MVdp2ox3g45EygyrimfifbtB86mH9Yzkes"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "contracts/test/libraries/TransferHelper.sol": {
+        "keccak256": "0x325c5a058585f2a1ffe292a82b08fa77bccad9f02830aee1c7e7493189e600b8",
+        "urls": [
+          "bzz-raw://3c3e1ae87de89ad8b2743b2a9a7f17234cad484fe6caf35321e1ae947ed7a92a",
+          "dweb:/ipfs/QmeFixRMxvXBpT6rGrszU7TjDoVbv5HmQYUfecEArAPKRn"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+        "keccak256": "0xbd74f587ab9b9711801baf667db1426e4a03fd2d7f15af33e0e0d0394e7cef76",
+        "urls": [
+          "bzz-raw://2d0913dfbfce90d170df0d496ad7596c0778518e5fa7aba6c32562522546f66b",
+          "dweb:/ipfs/QmR6B8nLj2PJf5e1JWD9Nk7ErkAwkqUwadCnvE82FJr1RU"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol": {
+        "keccak256": "0xcc3d0c93fc9ac0febbe09f941b465b57f750bcf3b48432da0b97dc289cfdc489",
+        "urls": [
+          "bzz-raw://b9379ad954680c44a0bc523b314ae4c4da735f9fe1d02aa56ea5bdba6f1136f2",
+          "dweb:/ipfs/QmZXdgQNXKAckrXWz9R3mc47F1fvDvr28a2ewJrwNAw71B"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol": {
+        "keccak256": "0xfe6113d518466cd6652c85b111e01f33eb62157f49ae5ed7d5a3947a2044adb1",
+        "urls": [
+          "bzz-raw://1c42b9e6f5902ac38dd43e25750939baa7e0c1425dc75afd717c4412731065d5",
+          "dweb:/ipfs/QmWaoacnzsucTvBME2o7YgZBZMhaHv7fkj83htHMVWJKWh"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol": {
+        "keccak256": "0x27a9725b8f831a92d16380860c3d348a0b926a7f01b34a54ea6eea78cbdbcd6a",
+        "urls": [
+          "bzz-raw://7c37ca742c643ca4ba6baadff72b8450c6e340a30f7fea0863dba74030a9bbc7",
+          "dweb:/ipfs/QmeKBR6a7tQSX85Q7Lb2wrAWSEFqhC4tTmLo4SzcN3kFmp"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol": {
+        "keccak256": "0x9453dd0e7442188667d01d9b65de3f1e14e9511ff3e303179a15f6fc267f7634",
+        "urls": [
+          "bzz-raw://982f4328f956c3e60e67501e759eb292ac487f76460c774c50e9ae4fcc92aae5",
+          "dweb:/ipfs/QmRnzEDsaqtd9PJEVcgQi7p5aV5pMSvRUoGZJAdwFUJxgZ"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol": {
+        "keccak256": "0xe603ac5b17ecdee73ba2b27efdf386c257a19c14206e87eee77e2017b742d9e5",
+        "urls": [
+          "bzz-raw://8febc9bdb399a4d94bb89f5377732652e2400e4a8dee808201ade6848f9004e7",
+          "dweb:/ipfs/QmaKDqYYFU4d2W2iN77aDHptfbFmYZRrMYXHeGpJmM8C1c"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol": {
+        "keccak256": "0x8071514d0fe5d17d6fbd31c191cdfb703031c24e0ece3621d88ab10e871375cd",
+        "urls": [
+          "bzz-raw://d0b571930cc7488b1d546a7e9cea7c52d8b3c4e207da657ed0e0db7343b8cd03",
+          "dweb:/ipfs/QmaGK6vVwB95QSTR1XMYvrh7ivYAYZxi3fD7v6VMA4jZ39"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol": {
+        "keccak256": "0xf6e5d2cd1139c4c276bdbc8e1d2b256e456c866a91f1b868da265c6d2685c3f7",
+        "urls": [
+          "bzz-raw://b99c8c9ae8e27ee6559e5866bea82cbc9ffc8247f8d15b7422a4deb287d4d047",
+          "dweb:/ipfs/QmfL8gaqt3ffAnm6nVj5ksuNpLygXuL3xq5VBqrkwC2JJ3"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol": {
+        "keccak256": "0x759b78a2918af9e99e246dc3af084f654e48ef32bb4e4cb8a966aa3dcaece235",
+        "urls": [
+          "bzz-raw://64144fb96e1c7fdba87305acadb98a198d26a3d46c097cb3a666e567f6f29735",
+          "dweb:/ipfs/QmUnWVwN9FKB9uV5Pr8YfLpWZnYM2DENnRMaadZ492JS9u"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol": {
+        "keccak256": "0x852dc1f5df7dcf7f11e7bb3eed79f0cea72ad4b25f6a9d2c35aafb48925fd49f",
+        "urls": [
+          "bzz-raw://ed63907c38ff36b0e22bc9ffc53e791ea74f0d4f0e7c257fdfb5aaf8825b1f0f",
+          "dweb:/ipfs/QmSQrckghEjs6HVsA5GVgpNpZWvTXMY5eQLF7cN6deFeEg"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/libraries/FixedPoint96.sol": {
+        "keccak256": "0x0ba8a9b95a956a4050749c0158e928398c447c91469682ca8a7cc7e77a7fe032",
+        "urls": [
+          "bzz-raw://186d3b528866065a5856f96d2aeec698efa99f8da913e9adf34f8cc296cc993d",
+          "dweb:/ipfs/QmUAiMvtAQp8c9dy57bqJYzG7hkb1uChiPaQmt264skoqP"
+        ],
+        "license": "GPL-2.0-or-later"
+      },
+      "node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol": {
+        "keccak256": "0xe511530871deaef86692cea9adb6076d26d7b47fd4815ce51af52af981026057",
+        "urls": [
+          "bzz-raw://bc5a6ae776be3e7dcbd23d49ffbc9d792fed0ddf4b111ebb64b9bb2133ec263e",
+          "dweb:/ipfs/QmbAUtWqvipzEARQpFpkzYKBELy3qeW5WXnZxHFU84sxG7"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol": {
+        "keccak256": "0x1f864a2bf61ba05f3173eaf2e3f94c5e1da4bec0554757527b6d1ef1fe439e4e",
+        "urls": [
+          "bzz-raw://5139b586df546a9d1c46804ca400b1cb9ce87236eaf212ebd64edee6747a172a",
+          "dweb:/ipfs/QmVa2kcRw3VyuB6j1EVWXACKnkbQZgfXYXNi5voq3XkYG8"
+        ],
+        "license": "GPL-2.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "contracts/test/base/LiquidityManagement.sol",
+    "id": 28206,
+    "exportedSymbols": {
+      "CallbackValidation": [
+        30979
+      ],
+      "FixedPoint96": [
+        69994
+      ],
+      "FullMath": [
+        70167
+      ],
+      "IERC20": [
+        65588
+      ],
+      "IPeripheryImmutableState": [
+        29387
+      ],
+      "IPeripheryPayments": [
+        29413
+      ],
+      "IUniswapV3Factory": [
+        69228
+      ],
+      "IUniswapV3MintCallback": [
+        69264
+      ],
+      "IUniswapV3Pool": [
+        69250
+      ],
+      "IUniswapV3PoolActions": [
+        69374
+      ],
+      "IUniswapV3PoolDerivedState": [
+        69405
+      ],
+      "IUniswapV3PoolEvents": [
+        69524
+      ],
+      "IUniswapV3PoolImmutables": [
+        69564
+      ],
+      "IUniswapV3PoolOwnerActions": [
+        69590
+      ],
+      "IUniswapV3PoolState": [
+        69698
+      ],
+      "IWETH9": [
+        30099
+      ],
+      "LiquidityAmounts": [
+        31656
+      ],
+      "LiquidityManagement": [
+        28205
+      ],
+      "PeripheryImmutableState": [
+        28321
+      ],
+      "PeripheryPayments": [
+        28531
+      ],
+      "PoolAddress": [
+        35970
+      ],
+      "TickMath": [
+        71922
+      ],
+      "TransferHelper": [
+        39230
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "45:3236:90",
+    "nodes": [
+      {
+        "id": 27992,
+        "nodeType": "PragmaDirective",
+        "src": "45:23:90",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "=",
+          "0.7",
+          ".6"
+        ]
+      },
+      {
+        "id": 27993,
+        "nodeType": "PragmaDirective",
+        "src": "69:19:90",
+        "nodes": [],
+        "literals": [
+          "abicoder",
+          "v2"
+        ]
+      },
+      {
+        "id": 27994,
+        "nodeType": "ImportDirective",
+        "src": "90:69:90",
+        "nodes": [],
+        "absolutePath": "node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol",
+        "file": "@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol",
+        "scope": 28206,
+        "sourceUnit": 69229,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 27995,
+        "nodeType": "ImportDirective",
+        "src": "160:83:90",
+        "nodes": [],
+        "absolutePath": "node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+        "file": "@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+        "scope": 28206,
+        "sourceUnit": 69265,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 27996,
+        "nodeType": "ImportDirective",
+        "src": "244:59:90",
+        "nodes": [],
+        "absolutePath": "node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol",
+        "file": "@uniswap/v3-core/contracts/libraries/TickMath.sol",
+        "scope": 28206,
+        "sourceUnit": 71923,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 27997,
+        "nodeType": "ImportDirective",
+        "src": "305:38:90",
+        "nodes": [],
+        "absolutePath": "contracts/test/libraries/PoolAddress.sol",
+        "file": "../libraries/PoolAddress.sol",
+        "scope": 28206,
+        "sourceUnit": 35971,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 27998,
+        "nodeType": "ImportDirective",
+        "src": "344:45:90",
+        "nodes": [],
+        "absolutePath": "contracts/test/libraries/CallbackValidation.sol",
+        "file": "../libraries/CallbackValidation.sol",
+        "scope": 28206,
+        "sourceUnit": 30980,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 27999,
+        "nodeType": "ImportDirective",
+        "src": "390:43:90",
+        "nodes": [],
+        "absolutePath": "contracts/test/libraries/LiquidityAmounts.sol",
+        "file": "../libraries/LiquidityAmounts.sol",
+        "scope": 28206,
+        "sourceUnit": 31657,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 28000,
+        "nodeType": "ImportDirective",
+        "src": "435:33:90",
+        "nodes": [],
+        "absolutePath": "contracts/test/base/PeripheryPayments.sol",
+        "file": "./PeripheryPayments.sol",
+        "scope": 28206,
+        "sourceUnit": 28532,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 28001,
+        "nodeType": "ImportDirective",
+        "src": "469:39:90",
+        "nodes": [],
+        "absolutePath": "contracts/test/base/PeripheryImmutableState.sol",
+        "file": "./PeripheryImmutableState.sol",
+        "scope": 28206,
+        "sourceUnit": 28322,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 28205,
+        "nodeType": "ContractDefinition",
+        "src": "627:2653:90",
+        "nodes": [
+          {
+            "id": 28013,
+            "nodeType": "StructDefinition",
+            "src": "753:91:90",
+            "nodes": [],
+            "canonicalName": "LiquidityManagement.MintCallbackData",
+            "members": [
+              {
+                "constant": false,
+                "id": 28010,
+                "mutability": "mutable",
+                "name": "poolKey",
+                "nodeType": "VariableDeclaration",
+                "scope": 28013,
+                "src": "787:27:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_PoolKey_$35891_storage_ptr",
+                  "typeString": "struct PoolAddress.PoolKey"
+                },
+                "typeName": {
+                  "id": 28009,
+                  "name": "PoolAddress.PoolKey",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 35891,
+                  "src": "787:19:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PoolKey_$35891_storage_ptr",
+                    "typeString": "struct PoolAddress.PoolKey"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28012,
+                "mutability": "mutable",
+                "name": "payer",
+                "nodeType": "VariableDeclaration",
+                "scope": 28013,
+                "src": "824:13:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 28011,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "824:7:90",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "MintCallbackData",
+            "scope": 28205,
+            "visibility": "public"
+          },
+          {
+            "id": 28072,
+            "nodeType": "FunctionDefinition",
+            "src": "893:519:90",
+            "nodes": [],
+            "body": {
+              "id": 28071,
+              "nodeType": "Block",
+              "src": "1035:377:90",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    28025
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 28025,
+                      "mutability": "mutable",
+                      "name": "decoded",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 28071,
+                      "src": "1045:31:90",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                        "typeString": "struct LiquidityManagement.MintCallbackData"
+                      },
+                      "typeName": {
+                        "id": 28024,
+                        "name": "MintCallbackData",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 28013,
+                        "src": "1045:16:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_MintCallbackData_$28013_storage_ptr",
+                          "typeString": "struct LiquidityManagement.MintCallbackData"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 28032,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 28028,
+                        "name": "data",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 28020,
+                        "src": "1090:4:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        }
+                      },
+                      {
+                        "components": [
+                          {
+                            "id": 28029,
+                            "name": "MintCallbackData",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28013,
+                            "src": "1097:16:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_struct$_MintCallbackData_$28013_storage_ptr_$",
+                              "typeString": "type(struct LiquidityManagement.MintCallbackData storage pointer)"
+                            }
+                          }
+                        ],
+                        "id": 28030,
+                        "isConstant": false,
+                        "isInlineArray": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "TupleExpression",
+                        "src": "1096:18:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_MintCallbackData_$28013_storage_ptr_$",
+                          "typeString": "type(struct LiquidityManagement.MintCallbackData storage pointer)"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_calldata_ptr",
+                          "typeString": "bytes calldata"
+                        },
+                        {
+                          "typeIdentifier": "t_type$_t_struct$_MintCallbackData_$28013_storage_ptr_$",
+                          "typeString": "type(struct LiquidityManagement.MintCallbackData storage pointer)"
+                        }
+                      ],
+                      "expression": {
+                        "id": 28026,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "1079:3:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 28027,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "decode",
+                      "nodeType": "MemberAccess",
+                      "src": "1079:10:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abidecode_pure$__$returns$__$",
+                        "typeString": "function () pure"
+                      }
+                    },
+                    "id": 28031,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1079:36:90",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                      "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1045:70:90"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 28036,
+                        "name": "factory",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 28300,
+                        "src": "1159:7:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 28037,
+                          "name": "decoded",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28025,
+                          "src": "1168:7:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                            "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                          }
+                        },
+                        "id": 28038,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "poolKey",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 28010,
+                        "src": "1168:15:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                          "typeString": "struct PoolAddress.PoolKey memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                          "typeString": "struct PoolAddress.PoolKey memory"
+                        }
+                      ],
+                      "expression": {
+                        "id": 28033,
+                        "name": "CallbackValidation",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30979,
+                        "src": "1125:18:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_CallbackValidation_$30979_$",
+                          "typeString": "type(library CallbackValidation)"
+                        }
+                      },
+                      "id": 28035,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "verifyCallback",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30978,
+                      "src": "1125:33:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_address_$_t_struct$_PoolKey_$35891_memory_ptr_$returns$_t_contract$_IUniswapV3Pool_$69250_$",
+                        "typeString": "function (address,struct PoolAddress.PoolKey memory) view returns (contract IUniswapV3Pool)"
+                      }
+                    },
+                    "id": 28039,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1125:59:90",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                      "typeString": "contract IUniswapV3Pool"
+                    }
+                  },
+                  "id": 28040,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1125:59:90"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 28043,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 28041,
+                      "name": "amount0Owed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28016,
+                      "src": "1199:11:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 28042,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1213:1:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1199:15:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 28055,
+                  "nodeType": "IfStatement",
+                  "src": "1195:100:90",
+                  "trueBody": {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "expression": {
+                              "id": 28045,
+                              "name": "decoded",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28025,
+                              "src": "1232:7:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                                "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                              }
+                            },
+                            "id": 28046,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "poolKey",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 28010,
+                            "src": "1232:15:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                              "typeString": "struct PoolAddress.PoolKey memory"
+                            }
+                          },
+                          "id": 28047,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "token0",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 35886,
+                          "src": "1232:22:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 28048,
+                            "name": "decoded",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28025,
+                            "src": "1256:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                              "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                            }
+                          },
+                          "id": 28049,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "payer",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 28012,
+                          "src": "1256:13:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 28050,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "1271:3:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 28051,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1271:10:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        {
+                          "id": 28052,
+                          "name": "amount0Owed",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28016,
+                          "src": "1283:11:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 28044,
+                        "name": "pay",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 28530,
+                        "src": "1228:3:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$returns$__$",
+                          "typeString": "function (address,address,address,uint256)"
+                        }
+                      },
+                      "id": 28053,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1228:67:90",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 28054,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1228:67:90"
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 28058,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 28056,
+                      "name": "amount1Owed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28018,
+                      "src": "1309:11:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 28057,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1323:1:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1309:15:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 28070,
+                  "nodeType": "IfStatement",
+                  "src": "1305:100:90",
+                  "trueBody": {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "expression": {
+                              "id": 28060,
+                              "name": "decoded",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28025,
+                              "src": "1342:7:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                                "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                              }
+                            },
+                            "id": 28061,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "poolKey",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 28010,
+                            "src": "1342:15:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                              "typeString": "struct PoolAddress.PoolKey memory"
+                            }
+                          },
+                          "id": 28062,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "token1",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 35888,
+                          "src": "1342:22:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 28063,
+                            "name": "decoded",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28025,
+                            "src": "1366:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                              "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                            }
+                          },
+                          "id": 28064,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "payer",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 28012,
+                          "src": "1366:13:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 28065,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "1381:3:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 28066,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1381:10:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        {
+                          "id": 28067,
+                          "name": "amount1Owed",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28018,
+                          "src": "1393:11:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 28059,
+                        "name": "pay",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 28530,
+                        "src": "1338:3:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$returns$__$",
+                          "typeString": "function (address,address,address,uint256)"
+                        }
+                      },
+                      "id": 28068,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1338:67:90",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$__$",
+                        "typeString": "tuple()"
+                      }
+                    },
+                    "id": 28069,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1338:67:90"
+                  }
+                }
+              ]
+            },
+            "baseFunctions": [
+              69263
+            ],
+            "documentation": {
+              "id": 28014,
+              "nodeType": "StructuredDocumentation",
+              "src": "850:38:90",
+              "text": "@inheritdoc IUniswapV3MintCallback"
+            },
+            "functionSelector": "d3487997",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "uniswapV3MintCallback",
+            "overrides": {
+              "id": 28022,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "1026:8:90"
+            },
+            "parameters": {
+              "id": 28021,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28016,
+                  "mutability": "mutable",
+                  "name": "amount0Owed",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28072,
+                  "src": "933:19:90",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28015,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "933:7:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28018,
+                  "mutability": "mutable",
+                  "name": "amount1Owed",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28072,
+                  "src": "962:19:90",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28017,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "962:7:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28020,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28072,
+                  "src": "991:19:90",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 28019,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "991:5:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "923:93:90"
+            },
+            "returnParameters": {
+              "id": 28023,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1035:0:90"
+            },
+            "scope": 28205,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 28093,
+            "nodeType": "StructDefinition",
+            "src": "1418:298:90",
+            "nodes": [],
+            "canonicalName": "LiquidityManagement.AddLiquidityParams",
+            "members": [
+              {
+                "constant": false,
+                "id": 28074,
+                "mutability": "mutable",
+                "name": "token0",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1454:14:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 28073,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1454:7:90",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28076,
+                "mutability": "mutable",
+                "name": "token1",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1478:14:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 28075,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1478:7:90",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28078,
+                "mutability": "mutable",
+                "name": "fee",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1502:10:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint24",
+                  "typeString": "uint24"
+                },
+                "typeName": {
+                  "id": 28077,
+                  "name": "uint24",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1502:6:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint24",
+                    "typeString": "uint24"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28080,
+                "mutability": "mutable",
+                "name": "recipient",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1522:17:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 28079,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1522:7:90",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28082,
+                "mutability": "mutable",
+                "name": "tickLower",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1549:15:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int24",
+                  "typeString": "int24"
+                },
+                "typeName": {
+                  "id": 28081,
+                  "name": "int24",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1549:5:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28084,
+                "mutability": "mutable",
+                "name": "tickUpper",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1574:15:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int24",
+                  "typeString": "int24"
+                },
+                "typeName": {
+                  "id": 28083,
+                  "name": "int24",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1574:5:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28086,
+                "mutability": "mutable",
+                "name": "amount0Desired",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1599:22:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 28085,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1599:7:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28088,
+                "mutability": "mutable",
+                "name": "amount1Desired",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1631:22:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 28087,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1631:7:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28090,
+                "mutability": "mutable",
+                "name": "amount0Min",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1663:18:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 28089,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1663:7:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28092,
+                "mutability": "mutable",
+                "name": "amount1Min",
+                "nodeType": "VariableDeclaration",
+                "scope": 28093,
+                "src": "1691:18:90",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 28091,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1691:7:90",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "AddLiquidityParams",
+            "scope": 28205,
+            "visibility": "public"
+          },
+          {
+            "id": 28204,
+            "nodeType": "FunctionDefinition",
+            "src": "1775:1503:90",
+            "nodes": [],
+            "body": {
+              "id": 28203,
+              "nodeType": "Block",
+              "src": "2001:1277:90",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    28110
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 28110,
+                      "mutability": "mutable",
+                      "name": "poolKey",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 28203,
+                      "src": "2011:34:90",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                        "typeString": "struct PoolAddress.PoolKey"
+                      },
+                      "typeName": {
+                        "id": 28109,
+                        "name": "PoolAddress.PoolKey",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 35891,
+                        "src": "2011:19:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_PoolKey_$35891_storage_ptr",
+                          "typeString": "struct PoolAddress.PoolKey"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 28120,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 28113,
+                          "name": "params",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28096,
+                          "src": "2090:6:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                            "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                          }
+                        },
+                        "id": 28114,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "token0",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 28074,
+                        "src": "2090:13:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 28115,
+                          "name": "params",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28096,
+                          "src": "2125:6:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                            "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                          }
+                        },
+                        "id": 28116,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "token1",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 28076,
+                        "src": "2125:13:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 28117,
+                          "name": "params",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28096,
+                          "src": "2157:6:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                            "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                          }
+                        },
+                        "id": 28118,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "fee",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 28078,
+                        "src": "2157:10:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint24",
+                          "typeString": "uint24"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint24",
+                          "typeString": "uint24"
+                        }
+                      ],
+                      "expression": {
+                        "id": 28111,
+                        "name": "PoolAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 35970,
+                        "src": "2048:11:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_PoolAddress_$35970_$",
+                          "typeString": "type(library PoolAddress)"
+                        }
+                      },
+                      "id": 28112,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "PoolKey",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 35891,
+                      "src": "2048:19:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_PoolKey_$35891_storage_ptr_$",
+                        "typeString": "type(struct PoolAddress.PoolKey storage pointer)"
+                      }
+                    },
+                    "id": 28119,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [
+                      "token0",
+                      "token1",
+                      "fee"
+                    ],
+                    "nodeType": "FunctionCall",
+                    "src": "2048:130:90",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                      "typeString": "struct PoolAddress.PoolKey memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2011:167:90"
+                },
+                {
+                  "expression": {
+                    "id": 28129,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 28121,
+                      "name": "pool",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28105,
+                      "src": "2189:4:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                        "typeString": "contract IUniswapV3Pool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "arguments": [
+                            {
+                              "id": 28125,
+                              "name": "factory",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28300,
+                              "src": "2238:7:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            {
+                              "id": 28126,
+                              "name": "poolKey",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28110,
+                              "src": "2247:7:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                                "typeString": "struct PoolAddress.PoolKey memory"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              {
+                                "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                                "typeString": "struct PoolAddress.PoolKey memory"
+                              }
+                            ],
+                            "expression": {
+                              "id": 28123,
+                              "name": "PoolAddress",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 35970,
+                              "src": "2211:11:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_PoolAddress_$35970_$",
+                                "typeString": "type(library PoolAddress)"
+                              }
+                            },
+                            "id": 28124,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "computeAddress",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 35969,
+                            "src": "2211:26:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$_t_address_$_t_struct$_PoolKey_$35891_memory_ptr_$returns$_t_address_$",
+                              "typeString": "function (address,struct PoolAddress.PoolKey memory) pure returns (address)"
+                            }
+                          },
+                          "id": 28127,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2211:44:90",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 28122,
+                        "name": "IUniswapV3Pool",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 69250,
+                        "src": "2196:14:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IUniswapV3Pool_$69250_$",
+                          "typeString": "type(contract IUniswapV3Pool)"
+                        }
+                      },
+                      "id": 28128,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2196:60:90",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                        "typeString": "contract IUniswapV3Pool"
+                      }
+                    },
+                    "src": "2189:67:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                      "typeString": "contract IUniswapV3Pool"
+                    }
+                  },
+                  "id": 28130,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2189:67:90"
+                },
+                {
+                  "id": 28166,
+                  "nodeType": "Block",
+                  "src": "2307:550:90",
+                  "statements": [
+                    {
+                      "assignments": [
+                        28132,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                      ],
+                      "declarations": [
+                        {
+                          "constant": false,
+                          "id": 28132,
+                          "mutability": "mutable",
+                          "name": "sqrtPriceX96",
+                          "nodeType": "VariableDeclaration",
+                          "scope": 28166,
+                          "src": "2322:20:90",
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint160",
+                            "typeString": "uint160"
+                          },
+                          "typeName": {
+                            "id": 28131,
+                            "name": "uint160",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2322:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint160",
+                              "typeString": "uint160"
+                            }
+                          },
+                          "visibility": "internal"
+                        },
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                      ],
+                      "id": 28136,
+                      "initialValue": {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "id": 28133,
+                            "name": "pool",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28105,
+                            "src": "2358:4:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                              "typeString": "contract IUniswapV3Pool"
+                            }
+                          },
+                          "id": 28134,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "slot0",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 69611,
+                          "src": "2358:10:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$__$returns$_t_uint160_$_t_int24_$_t_uint16_$_t_uint16_$_t_uint16_$_t_uint8_$_t_bool_$",
+                            "typeString": "function () view external returns (uint160,int24,uint16,uint16,uint16,uint8,bool)"
+                          }
+                        },
+                        "id": 28135,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2358:12:90",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_tuple$_t_uint160_$_t_int24_$_t_uint16_$_t_uint16_$_t_uint16_$_t_uint8_$_t_bool_$",
+                          "typeString": "tuple(uint160,int24,uint16,uint16,uint16,uint8,bool)"
+                        }
+                      },
+                      "nodeType": "VariableDeclarationStatement",
+                      "src": "2321:49:90"
+                    },
+                    {
+                      "assignments": [
+                        28138
+                      ],
+                      "declarations": [
+                        {
+                          "constant": false,
+                          "id": 28138,
+                          "mutability": "mutable",
+                          "name": "sqrtRatioAX96",
+                          "nodeType": "VariableDeclaration",
+                          "scope": 28166,
+                          "src": "2384:21:90",
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint160",
+                            "typeString": "uint160"
+                          },
+                          "typeName": {
+                            "id": 28137,
+                            "name": "uint160",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2384:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint160",
+                              "typeString": "uint160"
+                            }
+                          },
+                          "visibility": "internal"
+                        }
+                      ],
+                      "id": 28144,
+                      "initialValue": {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 28141,
+                              "name": "params",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28096,
+                              "src": "2453:6:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                                "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                              }
+                            },
+                            "id": 28142,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "tickLower",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 28082,
+                            "src": "2453:16:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int24",
+                              "typeString": "int24"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_int24",
+                              "typeString": "int24"
+                            }
+                          ],
+                          "expression": {
+                            "id": 28139,
+                            "name": "TickMath",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 71922,
+                            "src": "2408:8:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_TickMath_$71922_$",
+                              "typeString": "type(library TickMath)"
+                            }
+                          },
+                          "id": 28140,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "getSqrtRatioAtTick",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 71782,
+                          "src": "2408:27:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_int24_$returns$_t_uint160_$",
+                            "typeString": "function (int24) pure returns (uint160)"
+                          }
+                        },
+                        "id": 28143,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2408:75:90",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint160",
+                          "typeString": "uint160"
+                        }
+                      },
+                      "nodeType": "VariableDeclarationStatement",
+                      "src": "2384:99:90"
+                    },
+                    {
+                      "assignments": [
+                        28146
+                      ],
+                      "declarations": [
+                        {
+                          "constant": false,
+                          "id": 28146,
+                          "mutability": "mutable",
+                          "name": "sqrtRatioBX96",
+                          "nodeType": "VariableDeclaration",
+                          "scope": 28166,
+                          "src": "2497:21:90",
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint160",
+                            "typeString": "uint160"
+                          },
+                          "typeName": {
+                            "id": 28145,
+                            "name": "uint160",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "2497:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint160",
+                              "typeString": "uint160"
+                            }
+                          },
+                          "visibility": "internal"
+                        }
+                      ],
+                      "id": 28152,
+                      "initialValue": {
+                        "arguments": [
+                          {
+                            "expression": {
+                              "id": 28149,
+                              "name": "params",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28096,
+                              "src": "2566:6:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                                "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                              }
+                            },
+                            "id": 28150,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "tickUpper",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 28084,
+                            "src": "2566:16:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int24",
+                              "typeString": "int24"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_int24",
+                              "typeString": "int24"
+                            }
+                          ],
+                          "expression": {
+                            "id": 28147,
+                            "name": "TickMath",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 71922,
+                            "src": "2521:8:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_TickMath_$71922_$",
+                              "typeString": "type(library TickMath)"
+                            }
+                          },
+                          "id": 28148,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "getSqrtRatioAtTick",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 71782,
+                          "src": "2521:27:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_int24_$returns$_t_uint160_$",
+                            "typeString": "function (int24) pure returns (uint160)"
+                          }
+                        },
+                        "id": 28151,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2521:75:90",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint160",
+                          "typeString": "uint160"
+                        }
+                      },
+                      "nodeType": "VariableDeclarationStatement",
+                      "src": "2497:99:90"
+                    },
+                    {
+                      "expression": {
+                        "id": 28164,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftHandSide": {
+                          "id": 28153,
+                          "name": "liquidity",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28099,
+                          "src": "2611:9:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint128",
+                            "typeString": "uint128"
+                          }
+                        },
+                        "nodeType": "Assignment",
+                        "operator": "=",
+                        "rightHandSide": {
+                          "arguments": [
+                            {
+                              "id": 28156,
+                              "name": "sqrtPriceX96",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28132,
+                              "src": "2680:12:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint160",
+                                "typeString": "uint160"
+                              }
+                            },
+                            {
+                              "id": 28157,
+                              "name": "sqrtRatioAX96",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28138,
+                              "src": "2710:13:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint160",
+                                "typeString": "uint160"
+                              }
+                            },
+                            {
+                              "id": 28158,
+                              "name": "sqrtRatioBX96",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28146,
+                              "src": "2741:13:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint160",
+                                "typeString": "uint160"
+                              }
+                            },
+                            {
+                              "expression": {
+                                "id": 28159,
+                                "name": "params",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 28096,
+                                "src": "2772:6:90",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                                  "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                                }
+                              },
+                              "id": 28160,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "amount0Desired",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 28086,
+                              "src": "2772:21:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            {
+                              "expression": {
+                                "id": 28161,
+                                "name": "params",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 28096,
+                                "src": "2811:6:90",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                                  "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                                }
+                              },
+                              "id": 28162,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "amount1Desired",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 28088,
+                              "src": "2811:21:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_uint160",
+                                "typeString": "uint160"
+                              },
+                              {
+                                "typeIdentifier": "t_uint160",
+                                "typeString": "uint160"
+                              },
+                              {
+                                "typeIdentifier": "t_uint160",
+                                "typeString": "uint160"
+                              },
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            ],
+                            "expression": {
+                              "id": 28154,
+                              "name": "LiquidityAmounts",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 31656,
+                              "src": "2623:16:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_LiquidityAmounts_$31656_$",
+                                "typeString": "type(library LiquidityAmounts)"
+                              }
+                            },
+                            "id": 28155,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "getLiquidityForAmounts",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 31506,
+                            "src": "2623:39:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$_t_uint160_$_t_uint160_$_t_uint160_$_t_uint256_$_t_uint256_$returns$_t_uint128_$",
+                              "typeString": "function (uint160,uint160,uint160,uint256,uint256) pure returns (uint128)"
+                            }
+                          },
+                          "id": 28163,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2623:223:90",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint128",
+                            "typeString": "uint128"
+                          }
+                        },
+                        "src": "2611:235:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint128",
+                          "typeString": "uint128"
+                        }
+                      },
+                      "id": 28165,
+                      "nodeType": "ExpressionStatement",
+                      "src": "2611:235:90"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "id": 28188,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "components": [
+                        {
+                          "id": 28167,
+                          "name": "amount0",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28101,
+                          "src": "2868:7:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "id": 28168,
+                          "name": "amount1",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28103,
+                          "src": "2877:7:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 28169,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "TupleExpression",
+                      "src": "2867:18:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                        "typeString": "tuple(uint256,uint256)"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "id": 28172,
+                            "name": "params",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28096,
+                            "src": "2911:6:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                              "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                            }
+                          },
+                          "id": 28173,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "recipient",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 28080,
+                          "src": "2911:16:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 28174,
+                            "name": "params",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28096,
+                            "src": "2941:6:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                              "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                            }
+                          },
+                          "id": 28175,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "tickLower",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 28082,
+                          "src": "2941:16:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int24",
+                            "typeString": "int24"
+                          }
+                        },
+                        {
+                          "expression": {
+                            "id": 28176,
+                            "name": "params",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28096,
+                            "src": "2971:6:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                              "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                            }
+                          },
+                          "id": 28177,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "tickUpper",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 28084,
+                          "src": "2971:16:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int24",
+                            "typeString": "int24"
+                          }
+                        },
+                        {
+                          "id": 28178,
+                          "name": "liquidity",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28099,
+                          "src": "3001:9:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint128",
+                            "typeString": "uint128"
+                          }
+                        },
+                        {
+                          "arguments": [
+                            {
+                              "arguments": [
+                                {
+                                  "id": 28182,
+                                  "name": "poolKey",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 28110,
+                                  "src": "3080:7:90",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                                    "typeString": "struct PoolAddress.PoolKey memory"
+                                  }
+                                },
+                                {
+                                  "expression": {
+                                    "id": 28183,
+                                    "name": "msg",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": -15,
+                                    "src": "3096:3:90",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_magic_message",
+                                      "typeString": "msg"
+                                    }
+                                  },
+                                  "id": 28184,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberName": "sender",
+                                  "nodeType": "MemberAccess",
+                                  "src": "3096:10:90",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address_payable",
+                                    "typeString": "address payable"
+                                  }
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": [
+                                  {
+                                    "typeIdentifier": "t_struct$_PoolKey_$35891_memory_ptr",
+                                    "typeString": "struct PoolAddress.PoolKey memory"
+                                  },
+                                  {
+                                    "typeIdentifier": "t_address_payable",
+                                    "typeString": "address payable"
+                                  }
+                                ],
+                                "id": 28181,
+                                "name": "MintCallbackData",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 28013,
+                                "src": "3052:16:90",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_struct$_MintCallbackData_$28013_storage_ptr_$",
+                                  "typeString": "type(struct LiquidityManagement.MintCallbackData storage pointer)"
+                                }
+                              },
+                              "id": 28185,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "structConstructorCall",
+                              "lValueRequested": false,
+                              "names": [
+                                "poolKey",
+                                "payer"
+                              ],
+                              "nodeType": "FunctionCall",
+                              "src": "3052:57:90",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                                "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_struct$_MintCallbackData_$28013_memory_ptr",
+                                "typeString": "struct LiquidityManagement.MintCallbackData memory"
+                              }
+                            ],
+                            "expression": {
+                              "id": 28179,
+                              "name": "abi",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": -1,
+                              "src": "3024:3:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_abi",
+                                "typeString": "abi"
+                              }
+                            },
+                            "id": 28180,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "encode",
+                            "nodeType": "MemberAccess",
+                            "src": "3024:10:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
+                              "typeString": "function () pure returns (bytes memory)"
+                            }
+                          },
+                          "id": 28186,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "3024:99:90",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_int24",
+                            "typeString": "int24"
+                          },
+                          {
+                            "typeIdentifier": "t_int24",
+                            "typeString": "int24"
+                          },
+                          {
+                            "typeIdentifier": "t_uint128",
+                            "typeString": "uint128"
+                          },
+                          {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        ],
+                        "expression": {
+                          "id": 28170,
+                          "name": "pool",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 28105,
+                          "src": "2888:4:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                            "typeString": "contract IUniswapV3Pool"
+                          }
+                        },
+                        "id": 28171,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "mint",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 69305,
+                        "src": "2888:9:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_int24_$_t_int24_$_t_uint128_$_t_bytes_memory_ptr_$returns$_t_uint256_$_t_uint256_$",
+                          "typeString": "function (address,int24,int24,uint128,bytes memory) external returns (uint256,uint256)"
+                        }
+                      },
+                      "id": 28187,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2888:245:90",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
+                        "typeString": "tuple(uint256,uint256)"
+                      }
+                    },
+                    "src": "2867:266:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 28189,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2867:266:90"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 28199,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 28194,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 28191,
+                            "name": "amount0",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28101,
+                            "src": "3165:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": ">=",
+                          "rightExpression": {
+                            "expression": {
+                              "id": 28192,
+                              "name": "params",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28096,
+                              "src": "3176:6:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                                "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                              }
+                            },
+                            "id": 28193,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "amount0Min",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 28090,
+                            "src": "3176:17:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "3165:28:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "&&",
+                        "rightExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 28198,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 28195,
+                            "name": "amount1",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 28103,
+                            "src": "3197:7:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": ">=",
+                          "rightExpression": {
+                            "expression": {
+                              "id": 28196,
+                              "name": "params",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 28096,
+                              "src": "3208:6:90",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                                "typeString": "struct LiquidityManagement.AddLiquidityParams memory"
+                              }
+                            },
+                            "id": 28197,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "amount1Min",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 28092,
+                            "src": "3208:17:90",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "3197:28:90",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "3165:60:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "507269636520736c69707061676520636865636b",
+                        "id": 28200,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3239:22:90",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_b3c36da41fc4c1f9bee348a3f96d2cd392cf705e6518e56365210c90cbd48f34",
+                          "typeString": "literal_string \"Price slippage check\""
+                        },
+                        "value": "Price slippage check"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_b3c36da41fc4c1f9bee348a3f96d2cd392cf705e6518e56365210c90cbd48f34",
+                          "typeString": "literal_string \"Price slippage check\""
+                        }
+                      ],
+                      "id": 28190,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "3144:7:90",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 28201,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3144:127:90",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 28202,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3144:127:90"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 28094,
+              "nodeType": "StructuredDocumentation",
+              "src": "1722:48:90",
+              "text": "@notice Add liquidity to an initialized pool"
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addLiquidity",
+            "parameters": {
+              "id": 28097,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28096,
+                  "mutability": "mutable",
+                  "name": "params",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28204,
+                  "src": "1797:32:90",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_memory_ptr",
+                    "typeString": "struct LiquidityManagement.AddLiquidityParams"
+                  },
+                  "typeName": {
+                    "id": 28095,
+                    "name": "AddLiquidityParams",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 28093,
+                    "src": "1797:18:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_AddLiquidityParams_$28093_storage_ptr",
+                      "typeString": "struct LiquidityManagement.AddLiquidityParams"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1796:34:90"
+            },
+            "returnParameters": {
+              "id": 28106,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28099,
+                  "mutability": "mutable",
+                  "name": "liquidity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28204,
+                  "src": "1878:17:90",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  },
+                  "typeName": {
+                    "id": 28098,
+                    "name": "uint128",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1878:7:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint128",
+                      "typeString": "uint128"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28101,
+                  "mutability": "mutable",
+                  "name": "amount0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28204,
+                  "src": "1909:15:90",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28100,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1909:7:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28103,
+                  "mutability": "mutable",
+                  "name": "amount1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28204,
+                  "src": "1938:15:90",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 28102,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1938:7:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 28105,
+                  "mutability": "mutable",
+                  "name": "pool",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 28204,
+                  "src": "1967:19:90",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                    "typeString": "contract IUniswapV3Pool"
+                  },
+                  "typeName": {
+                    "id": 28104,
+                    "name": "IUniswapV3Pool",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 69250,
+                    "src": "1967:14:90",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV3Pool_$69250",
+                      "typeString": "contract IUniswapV3Pool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1864:132:90"
+            },
+            "scope": 28205,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 28003,
+              "name": "IUniswapV3MintCallback",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 69264,
+              "src": "672:22:90",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IUniswapV3MintCallback_$69264",
+                "typeString": "contract IUniswapV3MintCallback"
+              }
+            },
+            "id": 28004,
+            "nodeType": "InheritanceSpecifier",
+            "src": "672:22:90"
+          },
+          {
+            "baseName": {
+              "id": 28005,
+              "name": "PeripheryImmutableState",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 28321,
+              "src": "700:23:90",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_PeripheryImmutableState_$28321",
+                "typeString": "contract PeripheryImmutableState"
+              }
+            },
+            "id": 28006,
+            "nodeType": "InheritanceSpecifier",
+            "src": "700:23:90"
+          },
+          {
+            "baseName": {
+              "id": 28007,
+              "name": "PeripheryPayments",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 28531,
+              "src": "729:17:90",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_PeripheryPayments_$28531",
+                "typeString": "contract PeripheryPayments"
+              }
+            },
+            "id": 28008,
+            "nodeType": "InheritanceSpecifier",
+            "src": "729:17:90"
+          }
+        ],
+        "contractDependencies": [
+          28321,
+          28531,
+          29387,
+          29413,
+          69264
+        ],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 28002,
+          "nodeType": "StructuredDocumentation",
+          "src": "510:117:90",
+          "text": "@title Liquidity management functions\n @notice Internal functions for safely managing liquidity in Uniswap V3"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          28205,
+          28531,
+          28321,
+          29387,
+          29413,
+          69264
+        ],
+        "name": "LiquidityManagement",
+        "scope": 28206
+      }
+    ],
+    "license": "GPL-2.0-or-later"
+  },
+  "id": 90
+}

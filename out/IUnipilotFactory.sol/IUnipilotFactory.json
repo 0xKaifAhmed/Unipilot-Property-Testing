@@ -1,0 +1,1073 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_oldGovernance",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_newGovernance",
+          "type": "address"
+        }
+      ],
+      "name": "GovernanceChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_tokenA",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_tokenB",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint16",
+          "name": "_strategyType",
+          "type": "uint16"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint24",
+          "name": "_fee",
+          "type": "uint24"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_vault",
+          "type": "address"
+        }
+      ],
+      "name": "VaultCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_tokenB",
+          "type": "address"
+        },
+        {
+          "internalType": "uint24",
+          "name": "_fee",
+          "type": "uint24"
+        },
+        {
+          "internalType": "uint16",
+          "name": "_vaultStrategy",
+          "type": "uint16"
+        },
+        {
+          "internalType": "uint160",
+          "name": "_sqrtPriceX96",
+          "type": "uint160"
+        },
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_symbol",
+          "type": "string"
+        }
+      ],
+      "name": "createVault",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "_vault",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUnipilotDetails",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "createVault(address,address,uint24,uint16,uint160,string,string)": "859e3fad",
+    "getUnipilotDetails()": "38d77280"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_oldGovernance\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_newGovernance\",\"type\":\"address\"}],\"name\":\"GovernanceChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_tokenA\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_tokenB\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint16\",\"name\":\"_strategyType\",\"type\":\"uint16\"},{\"indexed\":false,\"internalType\":\"uint24\",\"name\":\"_fee\",\"type\":\"uint24\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"}],\"name\":\"VaultCreated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_tokenA\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_tokenB\",\"type\":\"address\"},{\"internalType\":\"uint24\",\"name\":\"_fee\",\"type\":\"uint24\"},{\"internalType\":\"uint16\",\"name\":\"_vaultStrategy\",\"type\":\"uint16\"},{\"internalType\":\"uint160\",\"name\":\"_sqrtPriceX96\",\"type\":\"uint160\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_symbol\",\"type\":\"string\"}],\"name\":\"createVault\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getUnipilotDetails\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"GovernanceChanged(address,address)\":{\"params\":{\"_newGovernance\":\"The governance after the governance was changed\",\"_oldGovernance\":\"The governance before the governance was changed\"}},\"VaultCreated(address,address,uint16,uint24,address)\":{\"params\":{\"_fee\":\"The fee tier for which the vault is created\",\"_tokenA\":\"The first token of the pool by address sort order\",\"_tokenB\":\"The second token of the pool by address sort order\",\"_vault\":\"The address of the vault that is created\"}}},\"kind\":\"dev\",\"methods\":{\"createVault(address,address,uint24,uint16,uint160,string,string)\":{\"details\":\"tokenA and tokenB may be passed in either order: token0/token1 or token1/token0. The call will revert if the vault already exists, the fee is invalid, or the token arguments are invalid.\",\"params\":{\"_fee\":\"The desired fee for the unipilot vault\",\"_tokenA\":\"The first token of the pool by address sort order\",\"_tokenB\":\"The second token of the pool by address sort order\"},\"returns\":{\"_vault\":\"The address of the newly created pool\"}},\"getUnipilotDetails()\":{\"returns\":{\"_0\":\"governance address, strategy address, indexFund address\"}}},\"title\":\"The interface for the Unipilot Factory\",\"version\":1},\"userdoc\":{\"events\":{\"GovernanceChanged(address,address)\":{\"notice\":\"Emitted when the governance of the factory is changed\"},\"VaultCreated(address,address,uint16,uint24,address)\":{\"notice\":\"Emitted when a vault is created\"}},\"kind\":\"user\",\"methods\":{\"createVault(address,address,uint24,uint16,uint160,string,string)\":{\"notice\":\"Creates a vault for the given two tokens and fee\"},\"getUnipilotDetails()\":{\"notice\":\"Used to give addresses of governance, strategy, indexFund\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IUnipilotFactory.sol\":\"IUnipilotFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@cryptoalgebra/=node_modules/@cryptoalgebra/\",\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@uniswap/=node_modules/@uniswap/\",\":base64-sol/=node_modules/base64-sol/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/interfaces/IUnipilotFactory.sol\":{\"keccak256\":\"0x530d3bc22415a4eac2ad18d210427c5e746ac86322c630814ef7a11302583b5f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://76971611fb248ceab23aa71b489d5c2f73ebf37b27189fa19310fce794648ce8\",\"dweb:/ipfs/QmTSgRKmY6S9DHjsiHpJnAkxw6KrGDxEcwdGEDwySM6ca9\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_oldGovernance",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "_newGovernance",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "GovernanceChanged",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_tokenA",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "_tokenB",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "uint16",
+              "name": "_strategyType",
+              "type": "uint16",
+              "indexed": false
+            },
+            {
+              "internalType": "uint24",
+              "name": "_fee",
+              "type": "uint24",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "name": "_vault",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "VaultCreated",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_tokenA",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_tokenB",
+              "type": "address"
+            },
+            {
+              "internalType": "uint24",
+              "name": "_fee",
+              "type": "uint24"
+            },
+            {
+              "internalType": "uint16",
+              "name": "_vaultStrategy",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint160",
+              "name": "_sqrtPriceX96",
+              "type": "uint160"
+            },
+            {
+              "internalType": "string",
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "_symbol",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "createVault",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "_vault",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getUnipilotDetails",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "createVault(address,address,uint24,uint16,uint160,string,string)": {
+            "details": "tokenA and tokenB may be passed in either order: token0/token1 or token1/token0. The call will revert if the vault already exists, the fee is invalid, or the token arguments are invalid.",
+            "params": {
+              "_fee": "The desired fee for the unipilot vault",
+              "_tokenA": "The first token of the pool by address sort order",
+              "_tokenB": "The second token of the pool by address sort order"
+            },
+            "returns": {
+              "_vault": "The address of the newly created pool"
+            }
+          },
+          "getUnipilotDetails()": {
+            "returns": {
+              "_0": "governance address, strategy address, indexFund address"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "createVault(address,address,uint24,uint16,uint160,string,string)": {
+            "notice": "Creates a vault for the given two tokens and fee"
+          },
+          "getUnipilotDetails()": {
+            "notice": "Used to give addresses of governance, strategy, indexFund"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@cryptoalgebra/=node_modules/@cryptoalgebra/",
+        ":@ensdomains/=node_modules/@ensdomains/",
+        ":@openzeppelin/=node_modules/@openzeppelin/",
+        ":@uniswap/=node_modules/@uniswap/",
+        ":base64-sol/=node_modules/base64-sol/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        ":forge-std/=lib/forge-std/src/",
+        ":hardhat/=node_modules/hardhat/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "contracts/interfaces/IUnipilotFactory.sol": "IUnipilotFactory"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "contracts/interfaces/IUnipilotFactory.sol": {
+        "keccak256": "0x530d3bc22415a4eac2ad18d210427c5e746ac86322c630814ef7a11302583b5f",
+        "urls": [
+          "bzz-raw://76971611fb248ceab23aa71b489d5c2f73ebf37b27189fa19310fce794648ce8",
+          "dweb:/ipfs/QmTSgRKmY6S9DHjsiHpJnAkxw6KrGDxEcwdGEDwySM6ca9"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "contracts/interfaces/IUnipilotFactory.sol",
+    "id": 16687,
+    "exportedSymbols": {
+      "IUnipilotFactory": [
+        16686
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "31:2098:50",
+    "nodes": [
+      {
+        "id": 16630,
+        "nodeType": "PragmaDirective",
+        "src": "31:23:50",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".6"
+        ]
+      },
+      {
+        "id": 16686,
+        "nodeType": "ContractDefinition",
+        "src": "106:2022:50",
+        "nodes": [
+          {
+            "id": 16644,
+            "nodeType": "EventDefinition",
+            "src": "461:174:50",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 16632,
+              "nodeType": "StructuredDocumentation",
+              "src": "139:317:50",
+              "text": "@notice Emitted when a vault is created\n @param _tokenA The first token of the pool by address sort order\n @param _tokenB The second token of the pool by address sort order\n @param _fee The fee tier for which the vault is created\n @param _vault The address of the vault that is created"
+            },
+            "name": "VaultCreated",
+            "parameters": {
+              "id": 16643,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16634,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_tokenA",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16644,
+                  "src": "489:23:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16633,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "489:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16636,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_tokenB",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16644,
+                  "src": "522:23:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16635,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "522:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16638,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_strategyType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16644,
+                  "src": "555:20:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 16637,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "555:6:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16640,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16644,
+                  "src": "585:11:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint24",
+                    "typeString": "uint24"
+                  },
+                  "typeName": {
+                    "id": 16639,
+                    "name": "uint24",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "585:6:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint24",
+                      "typeString": "uint24"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16642,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_vault",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16644,
+                  "src": "606:22:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16641,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "606:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "479:155:50"
+            }
+          },
+          {
+            "id": 16651,
+            "nodeType": "EventDefinition",
+            "src": "868:110:50",
+            "nodes": [],
+            "anonymous": false,
+            "documentation": {
+              "id": 16645,
+              "nodeType": "StructuredDocumentation",
+              "src": "641:222:50",
+              "text": "@notice Emitted when the governance of the factory is changed\n @param _oldGovernance The governance before the governance was changed\n @param _newGovernance The governance after the governance was changed"
+            },
+            "name": "GovernanceChanged",
+            "parameters": {
+              "id": 16650,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16647,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_oldGovernance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16651,
+                  "src": "901:30:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16646,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "901:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16649,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_newGovernance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16651,
+                  "src": "941:30:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16648,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "941:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "891:86:50"
+            }
+          },
+          {
+            "id": 16671,
+            "nodeType": "FunctionDefinition",
+            "src": "1532:254:50",
+            "nodes": [],
+            "documentation": {
+              "id": 16652,
+              "nodeType": "StructuredDocumentation",
+              "src": "984:543:50",
+              "text": "@notice Creates a vault for the given two tokens and fee\n @param _tokenA The first token of the pool by address sort order\n @param _tokenB The second token of the pool by address sort order\n @param _fee The desired fee for the unipilot vault\n @dev tokenA and tokenB may be passed in either order: token0/token1 or token1/token0.\n The call will revert if the vault already exists, the fee is invalid, or the token arguments\n are invalid.\n @return _vault The address of the newly created pool"
+            },
+            "functionSelector": "859e3fad",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createVault",
+            "parameters": {
+              "id": 16667,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16654,
+                  "mutability": "mutable",
+                  "name": "_tokenA",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1562:15:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16653,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1562:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16656,
+                  "mutability": "mutable",
+                  "name": "_tokenB",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1587:15:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16655,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1587:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16658,
+                  "mutability": "mutable",
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1612:11:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint24",
+                    "typeString": "uint24"
+                  },
+                  "typeName": {
+                    "id": 16657,
+                    "name": "uint24",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1612:6:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint24",
+                      "typeString": "uint24"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16660,
+                  "mutability": "mutable",
+                  "name": "_vaultStrategy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1633:21:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 16659,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1633:6:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16662,
+                  "mutability": "mutable",
+                  "name": "_sqrtPriceX96",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1664:21:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 16661,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1664:7:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16664,
+                  "mutability": "mutable",
+                  "name": "_name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1695:19:50",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16663,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1695:6:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16666,
+                  "mutability": "mutable",
+                  "name": "_symbol",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1724:21:50",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16665,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1724:6:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1552:199:50"
+            },
+            "returnParameters": {
+              "id": 16670,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16669,
+                  "mutability": "mutable",
+                  "name": "_vault",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16671,
+                  "src": "1770:14:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16668,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1770:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1769:16:50"
+            },
+            "scope": 16686,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 16685,
+            "nodeType": "FunctionDefinition",
+            "src": "1938:188:50",
+            "nodes": [],
+            "documentation": {
+              "id": 16672,
+              "nodeType": "StructuredDocumentation",
+              "src": "1792:141:50",
+              "text": "@notice Used to give addresses of governance, strategy, indexFund\n @return governance address, strategy address, indexFund address"
+            },
+            "functionSelector": "38d77280",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUnipilotDetails",
+            "parameters": {
+              "id": 16673,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1965:2:50"
+            },
+            "returnParameters": {
+              "id": 16684,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16675,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16685,
+                  "src": "2028:7:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16674,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2028:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16677,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16685,
+                  "src": "2049:7:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16676,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2049:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16679,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16685,
+                  "src": "2070:7:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16678,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2070:7:50",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16681,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16685,
+                  "src": "2091:5:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 16680,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2091:5:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16683,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16685,
+                  "src": "2110:5:50",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 16682,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2110:5:50",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2014:111:50"
+            },
+            "scope": 16686,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 16631,
+          "nodeType": "StructuredDocumentation",
+          "src": "56:50:50",
+          "text": "@title The interface for the Unipilot Factory"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          16686
+        ],
+        "name": "IUnipilotFactory",
+        "scope": 16687
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 50
+}
