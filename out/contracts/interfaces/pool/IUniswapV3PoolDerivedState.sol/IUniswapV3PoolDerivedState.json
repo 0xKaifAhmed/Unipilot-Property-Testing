@@ -219,19 +219,19 @@
   },
   "ast": {
     "absolutePath": "node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
-    "id": 69406,
+    "id": 69210,
     "exportedSymbols": {
       "IUniswapV3PoolDerivedState": [
-        69405
+        69209
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "45:2557:209",
+    "src": "45:2557:211",
     "nodes": [
       {
-        "id": 69376,
+        "id": 69180,
         "nodeType": "PragmaDirective",
-        "src": "45:24:209",
+        "src": "45:24:211",
         "nodes": [],
         "literals": [
           "solidity",
@@ -241,19 +241,19 @@
         ]
       },
       {
-        "id": 69405,
+        "id": 69209,
         "nodeType": "ContractDefinition",
-        "src": "293:2308:209",
+        "src": "293:2308:211",
         "nodes": [
           {
-            "id": 69390,
+            "id": 69194,
             "nodeType": "FunctionDefinition",
-            "src": "1386:180:209",
+            "src": "1386:180:211",
             "nodes": [],
             "documentation": {
-              "id": 69378,
+              "id": 69182,
               "nodeType": "StructuredDocumentation",
-              "src": "336:1045:209",
+              "src": "336:1045:211",
               "text": "@notice Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp\n @dev To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing\n the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick,\n you must call it with secondsAgos = [3600, 0].\n @dev The time weighted average tick represents the geometric time weighted average price of the pool, in\n log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go from a tick value to a ratio.\n @param secondsAgos From how long ago each cumulative tick and liquidity value should be returned\n @return tickCumulatives Cumulative tick values as of each `secondsAgos` from the current block timestamp\n @return secondsPerLiquidityCumulativeX128s Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block\n timestamp"
             },
             "functionSelector": "883bdbfd",
@@ -262,17 +262,17 @@
             "modifiers": [],
             "name": "observe",
             "parameters": {
-              "id": 69382,
+              "id": 69186,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 69381,
+                  "id": 69185,
                   "mutability": "mutable",
                   "name": "secondsAgos",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69390,
-                  "src": "1403:29:209",
+                  "scope": 69194,
+                  "src": "1403:29:211",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -281,18 +281,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 69379,
+                      "id": 69183,
                       "name": "uint32",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1403:6:209",
+                      "src": "1403:6:211",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
                         "typeString": "uint32"
                       }
                     },
-                    "id": 69380,
+                    "id": 69184,
                     "nodeType": "ArrayTypeName",
-                    "src": "1403:8:209",
+                    "src": "1403:8:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
                       "typeString": "uint32[]"
@@ -301,20 +301,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1402:31:209"
+              "src": "1402:31:211"
             },
             "returnParameters": {
-              "id": 69389,
+              "id": 69193,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 69385,
+                  "id": 69189,
                   "mutability": "mutable",
                   "name": "tickCumulatives",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69390,
-                  "src": "1481:30:209",
+                  "scope": 69194,
+                  "src": "1481:30:211",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -323,18 +323,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 69383,
+                      "id": 69187,
                       "name": "int56",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1481:5:209",
+                      "src": "1481:5:211",
                       "typeDescriptions": {
                         "typeIdentifier": "t_int56",
                         "typeString": "int56"
                       }
                     },
-                    "id": 69384,
+                    "id": 69188,
                     "nodeType": "ArrayTypeName",
-                    "src": "1481:7:209",
+                    "src": "1481:7:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_int56_$dyn_storage_ptr",
                       "typeString": "int56[]"
@@ -344,12 +344,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 69388,
+                  "id": 69192,
                   "mutability": "mutable",
                   "name": "secondsPerLiquidityCumulativeX128s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69390,
-                  "src": "1513:51:209",
+                  "scope": 69194,
+                  "src": "1513:51:211",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -358,18 +358,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 69386,
+                      "id": 69190,
                       "name": "uint160",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1513:7:209",
+                      "src": "1513:7:211",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint160",
                         "typeString": "uint160"
                       }
                     },
-                    "id": 69387,
+                    "id": 69191,
                     "nodeType": "ArrayTypeName",
-                    "src": "1513:9:209",
+                    "src": "1513:9:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint160_$dyn_storage_ptr",
                       "typeString": "uint160[]"
@@ -378,22 +378,22 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1480:85:209"
+              "src": "1480:85:211"
             },
-            "scope": 69405,
+            "scope": 69209,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 69404,
+            "id": 69208,
             "nodeType": "FunctionDefinition",
-            "src": "2348:251:209",
+            "src": "2348:251:211",
             "nodes": [],
             "documentation": {
-              "id": 69391,
+              "id": 69195,
               "nodeType": "StructuredDocumentation",
-              "src": "1572:771:209",
+              "src": "1572:771:211",
               "text": "@notice Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range\n @dev Snapshots must only be compared to other snapshots, taken over a period for which a position existed.\n I.e., snapshots cannot be compared if a position is not held for the entire period between when the first\n snapshot is taken and the second snapshot is taken.\n @param tickLower The lower tick of the range\n @param tickUpper The upper tick of the range\n @return tickCumulativeInside The snapshot of the tick accumulator for the range\n @return secondsPerLiquidityInsideX128 The snapshot of seconds per liquidity for the range\n @return secondsInside The snapshot of seconds per liquidity for the range"
             },
             "functionSelector": "a38807f2",
@@ -402,17 +402,17 @@
             "modifiers": [],
             "name": "snapshotCumulativesInside",
             "parameters": {
-              "id": 69396,
+              "id": 69200,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 69393,
+                  "id": 69197,
                   "mutability": "mutable",
                   "name": "tickLower",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69404,
-                  "src": "2383:15:209",
+                  "scope": 69208,
+                  "src": "2383:15:211",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -420,10 +420,10 @@
                     "typeString": "int24"
                   },
                   "typeName": {
-                    "id": 69392,
+                    "id": 69196,
                     "name": "int24",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2383:5:209",
+                    "src": "2383:5:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int24",
                       "typeString": "int24"
@@ -433,12 +433,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 69395,
+                  "id": 69199,
                   "mutability": "mutable",
                   "name": "tickUpper",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69404,
-                  "src": "2400:15:209",
+                  "scope": 69208,
+                  "src": "2400:15:211",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -446,10 +446,10 @@
                     "typeString": "int24"
                   },
                   "typeName": {
-                    "id": 69394,
+                    "id": 69198,
                     "name": "int24",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2400:5:209",
+                    "src": "2400:5:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int24",
                       "typeString": "int24"
@@ -458,20 +458,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2382:34:209"
+              "src": "2382:34:211"
             },
             "returnParameters": {
-              "id": 69403,
+              "id": 69207,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 69398,
+                  "id": 69202,
                   "mutability": "mutable",
                   "name": "tickCumulativeInside",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69404,
-                  "src": "2477:26:209",
+                  "scope": 69208,
+                  "src": "2477:26:211",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -479,10 +479,10 @@
                     "typeString": "int56"
                   },
                   "typeName": {
-                    "id": 69397,
+                    "id": 69201,
                     "name": "int56",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2477:5:209",
+                    "src": "2477:5:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int56",
                       "typeString": "int56"
@@ -492,12 +492,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 69400,
+                  "id": 69204,
                   "mutability": "mutable",
                   "name": "secondsPerLiquidityInsideX128",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69404,
-                  "src": "2517:37:209",
+                  "scope": 69208,
+                  "src": "2517:37:211",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -505,10 +505,10 @@
                     "typeString": "uint160"
                   },
                   "typeName": {
-                    "id": 69399,
+                    "id": 69203,
                     "name": "uint160",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2517:7:209",
+                    "src": "2517:7:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint160",
                       "typeString": "uint160"
@@ -518,12 +518,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 69402,
+                  "id": 69206,
                   "mutability": "mutable",
                   "name": "secondsInside",
                   "nodeType": "VariableDeclaration",
-                  "scope": 69404,
-                  "src": "2568:20:209",
+                  "scope": 69208,
+                  "src": "2568:20:211",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -531,10 +531,10 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 69401,
+                    "id": 69205,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2568:6:209",
+                    "src": "2568:6:211",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint32",
                       "typeString": "uint32"
@@ -543,9 +543,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2463:135:209"
+              "src": "2463:135:211"
             },
-            "scope": 69405,
+            "scope": 69209,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -556,20 +556,20 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 69377,
+          "id": 69181,
           "nodeType": "StructuredDocumentation",
-          "src": "71:222:209",
+          "src": "71:222:211",
           "text": "@title Pool state that is not stored\n @notice Contains view functions to provide information about the pool that is computed rather than stored on the\n blockchain. The functions here may have variable gas costs."
         },
         "fullyImplemented": false,
         "linearizedBaseContracts": [
-          69405
+          69209
         ],
         "name": "IUniswapV3PoolDerivedState",
-        "scope": 69406
+        "scope": 69210
       }
     ],
     "license": "GPL-2.0-or-later"
   },
-  "id": 209
+  "id": 211
 }

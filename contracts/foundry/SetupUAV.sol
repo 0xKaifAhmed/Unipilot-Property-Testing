@@ -16,8 +16,6 @@ This invariant ensures that the LP tokens minted through Unipilot are accurately
 the balance of token0 and token1 in the Unipilot position on Uniswap, and that there are no 
 discrepancies or unexpected errors in the calculation.
 
-
-
 The operator must be approved before executing any function that requires operator approval:
 This invariant ensures that the operator approval system is working as intended. 
 Functions that require operator approval should only be executed if the operator has been 
@@ -44,7 +42,6 @@ This invariant ensures that the governance address of the protocol cannot be cha
 than the contract owner. This is important for ensuring the security and stability of the protocol. 
 This invariant should be checked for any function that allows the governance address to be modified.
 
-
 uncompounded fee before rebalnce will always be greator then after rebalance
 
 uncompounded fee before withdraw will always be greator then after withdraw
@@ -58,11 +55,12 @@ pragma solidity ^0.7.6;
 pragma abicoder v2;
 
 import "./SetupUAF.sol";
-import { UnipilotActiveVault, IERC20 } from "../UnipilotActiveVault.sol";
+import { UnipilotActiveVault, IERC20 , IUnipilotVault} from "../UnipilotActiveVault.sol";
 
 contract SetupUAV is SetupUAF {
     UnipilotActiveVault public UAV;
     bool init;
+    address public pool;
 
     event notmytoken(address);
 
@@ -141,7 +139,7 @@ contract SetupUAV is SetupUAF {
         UAV = UnipilotActiveVault(payable(vault));
         init = true;
 
-        address pool = factory.getPool(t0, t1, fees);
+        pool = factory.getPool(t0, t1, fees);
         address[] memory pools = new address[](1);
         uint16[] memory sTypes = new uint16[](1);
         int24[] memory bMults = new int24[](1);
@@ -154,12 +152,5 @@ contract SetupUAV is SetupUAF {
         UAV.toggleOperator(msg.sender);
     }
 
-   
 
-   
-  
-
-    // function DoRebelance() public {
-    //     UAV.rebalance(int256(0), false, int24(-887220), int24(887220));
-    // }
 }

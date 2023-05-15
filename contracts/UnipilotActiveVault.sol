@@ -498,12 +498,12 @@ contract UnipilotActiveVault is ERC20Permit, IUnipilotVault {
     }
 
     /// @dev Amount of token0 held as unused balance.
-    function _balance0() internal view returns (uint256) {
+    function _balance0() public view returns (uint256) {
         return token0.balanceOf(address(this));
     }
 
     /// @dev Amount of token1 held as unused balance.
-    function _balance1() internal view returns (uint256) {
+    function _balance1() public view returns (uint256) {
         return token1.balanceOf(address(this));
     }
 
