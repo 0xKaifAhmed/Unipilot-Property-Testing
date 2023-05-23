@@ -677,7 +677,7 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
         uint256 feeAmount;
     }
 
-    /// @inheritdoc IUniswapV3PoolActions
+    event balance(string,uint256);
     function swap(
         address recipient,
         bool zeroForOne,
@@ -926,6 +926,9 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
                 amount1,
                 data
             );
+            emit balance("balance0Before" , balance0Before);
+            emit balance("balance0Before + amount 0" , balance0Before.add(uint256(amount0)));
+            emit balance("balance0()" , balance0());
             require(balance0Before.add(uint256(amount0)) <= balance0(), "IIA");
         } else {
             if (amount0 < 0)
@@ -941,6 +944,7 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
                 amount1,
                 data
             );
+
             require(balance1Before.add(uint256(amount1)) <= balance1(), "IIA");
         }
 

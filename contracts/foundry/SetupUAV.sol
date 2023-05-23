@@ -61,6 +61,7 @@ contract SetupUAV is SetupUAF {
     UnipilotActiveVault public UAV;
     bool init;
     address public pool;
+    uint24 public fees;
 
     event notmytoken(address);
 
@@ -122,7 +123,7 @@ contract SetupUAV is SetupUAF {
     ) public {
         require(init == false, "inited");
         uint160 _sqrtPriceX96 = encodePriceSqrt(amount0, amount1);
-        uint24 fees = FeeTier();
+        fees = FeeTier();
         require(t0 != address(0) && _vaultStrategy < 5, "TV");
         emit Sqrt(_sqrtPriceX96);
         address vault = UAF.createVault(
@@ -150,7 +151,13 @@ contract SetupUAV is SetupUAF {
         ST.setBaseTicks(pools, sTypes, bMults);
         ST.setMaxTwapDeviation(int24(9000));
         UAV.toggleOperator(msg.sender);
+        
     }
+
+    function getCurrentTick() public view returns(int24 tick) {
+        ( , tick , , , , , ) = IUniswapV3Pool(pool).slot0();
+    }
+
 
 
 }
