@@ -52,35 +52,4 @@ contract SetupUAF {
             address(TokenDescriptor)
         );
     }
-
-    // function mintToUniswap(
-    //     address t0,
-    //     address t1,
-    //     uint24 fees,
-    //     int24 tl,
-    //     int24 tu,
-    //     uint256 amount0,
-    //     uint256 amount1,
-    //     address sender
-    // ) public {
-    //     (address tokenA, address tokenB) = t0 < t1
-    //         ? (t0, t1)
-    //         : (t1, t0);
-
-    //     PositionManager.mint(
-    //         INonfungiblePositionManager.MintParams({
-    //             token0: tokenA,
-    //             token1: tokenB,
-    //             fee: fees,
-    //             tickLower: tl,
-    //             tickUpper: tu,
-    //             amount0Desired: amount0,
-    //             amount1Desired: amount1,
-    //             amount0Min: 0,
-    //             amount1Min: 0,
-    //             recipient: sender,
-    //             deadline: block.timestamp + 900
-    //         })
-    //     );
-    // }
 }

@@ -928,7 +928,7 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
             );
             emit balance("balance0Before" , balance0Before);
             emit balance("balance0Before + amount 0" , balance0Before.add(uint256(amount0)));
-            emit balance("balance0()" , balance0());
+            emit balance("balance0After" , balance0());
             require(balance0Before.add(uint256(amount0)) <= balance0(), "IIA");
         } else {
             if (amount0 < 0)

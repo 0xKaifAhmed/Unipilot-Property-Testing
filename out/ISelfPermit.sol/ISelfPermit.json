@@ -169,7 +169,7 @@
     "selfPermitAllowedIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)": "a4a78f0c",
     "selfPermitIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)": "c2e3140a"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiry\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermitAllowed\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiry\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermitAllowedIfNecessary\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermitIfNecessary\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"selfPermit(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this).\",\"params\":{\"deadline\":\"A timestamp, the current blocktime must be less than or equal to this timestamp\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\",\"value\":\"The amount that can be spent of token\"}},\"selfPermitAllowed(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this)\",\"params\":{\"expiry\":\"The timestamp at which the permit is no longer valid\",\"nonce\":\"The current nonce of the owner\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\"}},\"selfPermitAllowedIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this) Can be used instead of #selfPermitAllowed to prevent calls from failing due to a frontrun of a call to #selfPermitAllowed.\",\"params\":{\"expiry\":\"The timestamp at which the permit is no longer valid\",\"nonce\":\"The current nonce of the owner\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\"}},\"selfPermitIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this). Can be used instead of #selfPermit to prevent calls from failing due to a frontrun of a call to #selfPermit\",\"params\":{\"deadline\":\"A timestamp, the current blocktime must be less than or equal to this timestamp\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\",\"value\":\"The amount that can be spent of token\"}}},\"title\":\"Self Permit\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"selfPermit(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend a given token from `msg.sender`\"},\"selfPermitAllowed(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend the sender's tokens for permit signatures that have the `allowed` parameter\"},\"selfPermitAllowedIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend the sender's tokens for permit signatures that have the `allowed` parameter\"},\"selfPermitIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend a given token from `msg.sender`\"}},\"notice\":\"Functionality to call permit on any EIP-2612-compliant token for use in the route\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/dependencies/periphery/contracts/interfaces/ISelfPermit.sol\":\"ISelfPermit\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@cryptoalgebra/=node_modules/@cryptoalgebra/\",\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@uniswap/=node_modules/@uniswap/\",\":base64-sol/=node_modules/base64-sol/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/dependencies/periphery/contracts/interfaces/ISelfPermit.sol\":{\"keccak256\":\"0xe1a1c072855e687c90317c15b9b6ce81cc683723f73d70e47b40f2f9bad0c2be\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://53b0881a1c55254d157054bd3d1c86982c0f5429bd2a9986c15479f6b71ef678\",\"dweb:/ipfs/Qmc9WZqXzQmqsA3xYxojbx9nXcG3FGuwAjM3opEmRGSnBb\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiry\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermitAllowed\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiry\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermitAllowedIfNecessary\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"selfPermitIfNecessary\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"selfPermit(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this).\",\"params\":{\"deadline\":\"A timestamp, the current blocktime must be less than or equal to this timestamp\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\",\"value\":\"The amount that can be spent of token\"}},\"selfPermitAllowed(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this)\",\"params\":{\"expiry\":\"The timestamp at which the permit is no longer valid\",\"nonce\":\"The current nonce of the owner\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\"}},\"selfPermitAllowedIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this) Can be used instead of #selfPermitAllowed to prevent calls from failing due to a frontrun of a call to #selfPermitAllowed.\",\"params\":{\"expiry\":\"The timestamp at which the permit is no longer valid\",\"nonce\":\"The current nonce of the owner\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\"}},\"selfPermitIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"The `owner` is always msg.sender and the `spender` is always address(this). Can be used instead of #selfPermit to prevent calls from failing due to a frontrun of a call to #selfPermit\",\"params\":{\"deadline\":\"A timestamp, the current blocktime must be less than or equal to this timestamp\",\"r\":\"Must produce valid secp256k1 signature from the holder along with `v` and `s`\",\"s\":\"Must produce valid secp256k1 signature from the holder along with `r` and `v`\",\"token\":\"The address of the token spent\",\"v\":\"Must produce valid secp256k1 signature from the holder along with `r` and `s`\",\"value\":\"The amount that can be spent of token\"}}},\"title\":\"Self Permit\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"selfPermit(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend a given token from `msg.sender`\"},\"selfPermitAllowed(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend the sender's tokens for permit signatures that have the `allowed` parameter\"},\"selfPermitAllowedIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend the sender's tokens for permit signatures that have the `allowed` parameter\"},\"selfPermitIfNecessary(address,uint256,uint256,uint8,bytes32,bytes32)\":{\"notice\":\"Permits this contract to spend a given token from `msg.sender`\"}},\"notice\":\"Functionality to call permit on any EIP-2612-compliant token for use in the route\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/test/interfaces/ISelfPermit.sol\":\"ISelfPermit\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@cryptoalgebra/=node_modules/@cryptoalgebra/\",\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@uniswap/=node_modules/@uniswap/\",\":base64-sol/=node_modules/base64-sol/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/test/interfaces/ISelfPermit.sol\":{\"keccak256\":\"0xe1a1c072855e687c90317c15b9b6ce81cc683723f73d70e47b40f2f9bad0c2be\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://53b0881a1c55254d157054bd3d1c86982c0f5429bd2a9986c15479f6b71ef678\",\"dweb:/ipfs/Qmc9WZqXzQmqsA3xYxojbx9nXcG3FGuwAjM3opEmRGSnBb\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.7.6+commit.7338295f"
@@ -415,12 +415,12 @@
         "bytecodeHash": "ipfs"
       },
       "compilationTarget": {
-        "contracts/dependencies/periphery/contracts/interfaces/ISelfPermit.sol": "ISelfPermit"
+        "contracts/test/interfaces/ISelfPermit.sol": "ISelfPermit"
       },
       "libraries": {}
     },
     "sources": {
-      "contracts/dependencies/periphery/contracts/interfaces/ISelfPermit.sol": {
+      "contracts/test/interfaces/ISelfPermit.sol": {
         "keccak256": "0xe1a1c072855e687c90317c15b9b6ce81cc683723f73d70e47b40f2f9bad0c2be",
         "urls": [
           "bzz-raw://53b0881a1c55254d157054bd3d1c86982c0f5429bd2a9986c15479f6b71ef678",
@@ -432,20 +432,20 @@
     "version": 1
   },
   "ast": {
-    "absolutePath": "contracts/dependencies/periphery/contracts/interfaces/ISelfPermit.sol",
-    "id": 14951,
+    "absolutePath": "contracts/test/interfaces/ISelfPermit.sol",
+    "id": 43007,
     "exportedSymbols": {
       "ISelfPermit": [
-        14950
+        43006
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "45:3837:64",
+    "src": "45:3837:189",
     "nodes": [
       {
-        "id": 14884,
+        "id": 42940,
         "nodeType": "PragmaDirective",
-        "src": "45:24:64",
+        "src": "45:24:189",
         "nodes": [],
         "literals": [
           "solidity",
@@ -455,19 +455,19 @@
         ]
       },
       {
-        "id": 14950,
+        "id": 43006,
         "nodeType": "ContractDefinition",
-        "src": "188:3693:64",
+        "src": "188:3693:189",
         "nodes": [
           {
-            "id": 14901,
+            "id": 42957,
             "nodeType": "FunctionDefinition",
-            "src": "884:170:64",
+            "src": "884:170:189",
             "nodes": [],
             "documentation": {
-              "id": 14886,
+              "id": 42942,
               "nodeType": "StructuredDocumentation",
-              "src": "216:663:64",
+              "src": "216:663:189",
               "text": "@notice Permits this contract to spend a given token from `msg.sender`\n @dev The `owner` is always msg.sender and the `spender` is always address(this).\n @param token The address of the token spent\n @param value The amount that can be spent of token\n @param deadline A timestamp, the current blocktime must be less than or equal to this timestamp\n @param v Must produce valid secp256k1 signature from the holder along with `r` and `s`\n @param r Must produce valid secp256k1 signature from the holder along with `v` and `s`\n @param s Must produce valid secp256k1 signature from the holder along with `r` and `v`"
             },
             "functionSelector": "f3995c67",
@@ -476,17 +476,17 @@
             "modifiers": [],
             "name": "selfPermit",
             "parameters": {
-              "id": 14899,
+              "id": 42955,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14888,
+                  "id": 42944,
                   "mutability": "mutable",
                   "name": "token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14901,
-                  "src": "913:13:64",
+                  "scope": 42957,
+                  "src": "913:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -494,10 +494,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14887,
+                    "id": 42943,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "913:7:64",
+                    "src": "913:7:189",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -508,12 +508,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14890,
+                  "id": 42946,
                   "mutability": "mutable",
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14901,
-                  "src": "936:13:64",
+                  "scope": 42957,
+                  "src": "936:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -521,10 +521,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14889,
+                    "id": 42945,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "936:7:64",
+                    "src": "936:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -534,12 +534,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14892,
+                  "id": 42948,
                   "mutability": "mutable",
                   "name": "deadline",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14901,
-                  "src": "959:16:64",
+                  "scope": 42957,
+                  "src": "959:16:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -547,10 +547,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14891,
+                    "id": 42947,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "959:7:64",
+                    "src": "959:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -560,12 +560,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14894,
+                  "id": 42950,
                   "mutability": "mutable",
                   "name": "v",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14901,
-                  "src": "985:7:64",
+                  "scope": 42957,
+                  "src": "985:7:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -573,10 +573,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 14893,
+                    "id": 42949,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "985:5:64",
+                    "src": "985:5:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -586,12 +586,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14896,
+                  "id": 42952,
                   "mutability": "mutable",
                   "name": "r",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14901,
-                  "src": "1002:9:64",
+                  "scope": 42957,
+                  "src": "1002:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -599,10 +599,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14895,
+                    "id": 42951,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1002:7:64",
+                    "src": "1002:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -612,12 +612,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14898,
+                  "id": 42954,
                   "mutability": "mutable",
                   "name": "s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14901,
-                  "src": "1021:9:64",
+                  "scope": 42957,
+                  "src": "1021:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -625,10 +625,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14897,
+                    "id": 42953,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1021:7:64",
+                    "src": "1021:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -637,28 +637,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "903:133:64"
+              "src": "903:133:189"
             },
             "returnParameters": {
-              "id": 14900,
+              "id": 42956,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1053:0:64"
+              "src": "1053:0:189"
             },
-            "scope": 14950,
+            "scope": 43006,
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 14917,
+            "id": 42973,
             "nodeType": "FunctionDefinition",
-            "src": "1844:181:64",
+            "src": "1844:181:189",
             "nodes": [],
             "documentation": {
-              "id": 14902,
+              "id": 42958,
               "nodeType": "StructuredDocumentation",
-              "src": "1060:779:64",
+              "src": "1060:779:189",
               "text": "@notice Permits this contract to spend a given token from `msg.sender`\n @dev The `owner` is always msg.sender and the `spender` is always address(this).\n Can be used instead of #selfPermit to prevent calls from failing due to a frontrun of a call to #selfPermit\n @param token The address of the token spent\n @param value The amount that can be spent of token\n @param deadline A timestamp, the current blocktime must be less than or equal to this timestamp\n @param v Must produce valid secp256k1 signature from the holder along with `r` and `s`\n @param r Must produce valid secp256k1 signature from the holder along with `v` and `s`\n @param s Must produce valid secp256k1 signature from the holder along with `r` and `v`"
             },
             "functionSelector": "c2e3140a",
@@ -667,17 +667,17 @@
             "modifiers": [],
             "name": "selfPermitIfNecessary",
             "parameters": {
-              "id": 14915,
+              "id": 42971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14904,
+                  "id": 42960,
                   "mutability": "mutable",
                   "name": "token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14917,
-                  "src": "1884:13:64",
+                  "scope": 42973,
+                  "src": "1884:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -685,10 +685,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14903,
+                    "id": 42959,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1884:7:64",
+                    "src": "1884:7:189",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -699,12 +699,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14906,
+                  "id": 42962,
                   "mutability": "mutable",
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14917,
-                  "src": "1907:13:64",
+                  "scope": 42973,
+                  "src": "1907:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -712,10 +712,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14905,
+                    "id": 42961,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1907:7:64",
+                    "src": "1907:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -725,12 +725,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14908,
+                  "id": 42964,
                   "mutability": "mutable",
                   "name": "deadline",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14917,
-                  "src": "1930:16:64",
+                  "scope": 42973,
+                  "src": "1930:16:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -738,10 +738,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14907,
+                    "id": 42963,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1930:7:64",
+                    "src": "1930:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -751,12 +751,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14910,
+                  "id": 42966,
                   "mutability": "mutable",
                   "name": "v",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14917,
-                  "src": "1956:7:64",
+                  "scope": 42973,
+                  "src": "1956:7:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -764,10 +764,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 14909,
+                    "id": 42965,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1956:5:64",
+                    "src": "1956:5:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -777,12 +777,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14912,
+                  "id": 42968,
                   "mutability": "mutable",
                   "name": "r",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14917,
-                  "src": "1973:9:64",
+                  "scope": 42973,
+                  "src": "1973:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -790,10 +790,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14911,
+                    "id": 42967,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1973:7:64",
+                    "src": "1973:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -803,12 +803,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14914,
+                  "id": 42970,
                   "mutability": "mutable",
                   "name": "s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14917,
-                  "src": "1992:9:64",
+                  "scope": 42973,
+                  "src": "1992:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -816,10 +816,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14913,
+                    "id": 42969,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1992:7:64",
+                    "src": "1992:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -828,28 +828,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1874:133:64"
+              "src": "1874:133:189"
             },
             "returnParameters": {
-              "id": 14916,
+              "id": 42972,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2024:0:64"
+              "src": "2024:0:189"
             },
-            "scope": 14950,
+            "scope": 43006,
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 14933,
+            "id": 42989,
             "nodeType": "FunctionDefinition",
-            "src": "2706:175:64",
+            "src": "2706:175:189",
             "nodes": [],
             "documentation": {
-              "id": 14918,
+              "id": 42974,
               "nodeType": "StructuredDocumentation",
-              "src": "2031:670:64",
+              "src": "2031:670:189",
               "text": "@notice Permits this contract to spend the sender's tokens for permit signatures that have the `allowed` parameter\n @dev The `owner` is always msg.sender and the `spender` is always address(this)\n @param token The address of the token spent\n @param nonce The current nonce of the owner\n @param expiry The timestamp at which the permit is no longer valid\n @param v Must produce valid secp256k1 signature from the holder along with `r` and `s`\n @param r Must produce valid secp256k1 signature from the holder along with `v` and `s`\n @param s Must produce valid secp256k1 signature from the holder along with `r` and `v`"
             },
             "functionSelector": "4659a494",
@@ -858,17 +858,17 @@
             "modifiers": [],
             "name": "selfPermitAllowed",
             "parameters": {
-              "id": 14931,
+              "id": 42987,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14920,
+                  "id": 42976,
                   "mutability": "mutable",
                   "name": "token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14933,
-                  "src": "2742:13:64",
+                  "scope": 42989,
+                  "src": "2742:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -876,10 +876,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14919,
+                    "id": 42975,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2742:7:64",
+                    "src": "2742:7:189",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -890,12 +890,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14922,
+                  "id": 42978,
                   "mutability": "mutable",
                   "name": "nonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14933,
-                  "src": "2765:13:64",
+                  "scope": 42989,
+                  "src": "2765:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -903,10 +903,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14921,
+                    "id": 42977,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2765:7:64",
+                    "src": "2765:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -916,12 +916,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14924,
+                  "id": 42980,
                   "mutability": "mutable",
                   "name": "expiry",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14933,
-                  "src": "2788:14:64",
+                  "scope": 42989,
+                  "src": "2788:14:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -929,10 +929,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14923,
+                    "id": 42979,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2788:7:64",
+                    "src": "2788:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -942,12 +942,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14926,
+                  "id": 42982,
                   "mutability": "mutable",
                   "name": "v",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14933,
-                  "src": "2812:7:64",
+                  "scope": 42989,
+                  "src": "2812:7:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -955,10 +955,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 14925,
+                    "id": 42981,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2812:5:64",
+                    "src": "2812:5:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -968,12 +968,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14928,
+                  "id": 42984,
                   "mutability": "mutable",
                   "name": "r",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14933,
-                  "src": "2829:9:64",
+                  "scope": 42989,
+                  "src": "2829:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -981,10 +981,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14927,
+                    "id": 42983,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2829:7:64",
+                    "src": "2829:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -994,12 +994,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14930,
+                  "id": 42986,
                   "mutability": "mutable",
                   "name": "s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14933,
-                  "src": "2848:9:64",
+                  "scope": 42989,
+                  "src": "2848:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1007,10 +1007,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14929,
+                    "id": 42985,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2848:7:64",
+                    "src": "2848:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1019,28 +1019,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2732:131:64"
+              "src": "2732:131:189"
             },
             "returnParameters": {
-              "id": 14932,
+              "id": 42988,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2880:0:64"
+              "src": "2880:0:189"
             },
-            "scope": 14950,
+            "scope": 43006,
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 14949,
+            "id": 43005,
             "nodeType": "FunctionDefinition",
-            "src": "3693:186:64",
+            "src": "3693:186:189",
             "nodes": [],
             "documentation": {
-              "id": 14934,
+              "id": 42990,
               "nodeType": "StructuredDocumentation",
-              "src": "2887:801:64",
+              "src": "2887:801:189",
               "text": "@notice Permits this contract to spend the sender's tokens for permit signatures that have the `allowed` parameter\n @dev The `owner` is always msg.sender and the `spender` is always address(this)\n Can be used instead of #selfPermitAllowed to prevent calls from failing due to a frontrun of a call to #selfPermitAllowed.\n @param token The address of the token spent\n @param nonce The current nonce of the owner\n @param expiry The timestamp at which the permit is no longer valid\n @param v Must produce valid secp256k1 signature from the holder along with `r` and `s`\n @param r Must produce valid secp256k1 signature from the holder along with `v` and `s`\n @param s Must produce valid secp256k1 signature from the holder along with `r` and `v`"
             },
             "functionSelector": "a4a78f0c",
@@ -1049,17 +1049,17 @@
             "modifiers": [],
             "name": "selfPermitAllowedIfNecessary",
             "parameters": {
-              "id": 14947,
+              "id": 43003,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14936,
+                  "id": 42992,
                   "mutability": "mutable",
                   "name": "token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14949,
-                  "src": "3740:13:64",
+                  "scope": 43005,
+                  "src": "3740:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1067,10 +1067,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14935,
+                    "id": 42991,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3740:7:64",
+                    "src": "3740:7:189",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1081,12 +1081,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14938,
+                  "id": 42994,
                   "mutability": "mutable",
                   "name": "nonce",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14949,
-                  "src": "3763:13:64",
+                  "scope": 43005,
+                  "src": "3763:13:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1094,10 +1094,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14937,
+                    "id": 42993,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3763:7:64",
+                    "src": "3763:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1107,12 +1107,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14940,
+                  "id": 42996,
                   "mutability": "mutable",
                   "name": "expiry",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14949,
-                  "src": "3786:14:64",
+                  "scope": 43005,
+                  "src": "3786:14:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1120,10 +1120,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14939,
+                    "id": 42995,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3786:7:64",
+                    "src": "3786:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1133,12 +1133,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14942,
+                  "id": 42998,
                   "mutability": "mutable",
                   "name": "v",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14949,
-                  "src": "3810:7:64",
+                  "scope": 43005,
+                  "src": "3810:7:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1146,10 +1146,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 14941,
+                    "id": 42997,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3810:5:64",
+                    "src": "3810:5:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -1159,12 +1159,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14944,
+                  "id": 43000,
                   "mutability": "mutable",
                   "name": "r",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14949,
-                  "src": "3827:9:64",
+                  "scope": 43005,
+                  "src": "3827:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1172,10 +1172,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14943,
+                    "id": 42999,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3827:7:64",
+                    "src": "3827:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1185,12 +1185,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14946,
+                  "id": 43002,
                   "mutability": "mutable",
                   "name": "s",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14949,
-                  "src": "3846:9:64",
+                  "scope": 43005,
+                  "src": "3846:9:189",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1198,10 +1198,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 14945,
+                    "id": 43001,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3846:7:64",
+                    "src": "3846:7:189",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1210,15 +1210,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3730:131:64"
+              "src": "3730:131:189"
             },
             "returnParameters": {
-              "id": 14948,
+              "id": 43004,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3878:0:64"
+              "src": "3878:0:189"
             },
-            "scope": 14950,
+            "scope": 43006,
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
@@ -1229,20 +1229,20 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 14885,
+          "id": 42941,
           "nodeType": "StructuredDocumentation",
-          "src": "71:117:64",
+          "src": "71:117:189",
           "text": "@title Self Permit\n @notice Functionality to call permit on any EIP-2612-compliant token for use in the route"
         },
         "fullyImplemented": false,
         "linearizedBaseContracts": [
-          14950
+          43006
         ],
         "name": "ISelfPermit",
-        "scope": 14951
+        "scope": 43007
       }
     ],
     "license": "GPL-2.0-or-later"
   },
-  "id": 64
+  "id": 189
 }

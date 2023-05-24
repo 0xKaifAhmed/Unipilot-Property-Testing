@@ -10,23 +10,7 @@ initial shares required for the first deposit, it means that there is not enough
 liquidity in the pool to support trading. This invariant should be checked after 
 every deposit or withdrawal.
 
-Calculate the LP tokens accourding to the balance of t0 and t1 on unipilot position on 
-uniswap and make a bat while depositing the same amount through unipilot should be the same:
-This invariant ensures that the LP tokens minted through Unipilot are accurately reflecting 
-the balance of token0 and token1 in the Unipilot position on Uniswap, and that there are no 
-discrepancies or unexpected errors in the calculation.
 
-The operator must be approved before executing any function that requires operator approval:
-This invariant ensures that the operator approval system is working as intended. 
-Functions that require operator approval should only be executed if the operator has been 
-approved by the contract owner. This invariant should be checked before executing any function 
-that requires operator approval.
-
-The contract must not allow reentrant calls:
-This invariant ensures that the contract is protected against reentrancy attacks. Reentrancy 
-attacks occur when a function can be called recursively before the initial call has completed, 
-which can lead to unexpected behavior and potentially allow an attacker to drain the contract's 
-funds. This invariant should be checked for every function in the contract.
 
 The contract must ensure that the deviation of the current liquidity from the target liquidity 
 does not exceed a certain threshold before executing any function that involves modifying the 
@@ -46,8 +30,6 @@ uncompounded fee before rebalnce will always be greator then after rebalance
 
 uncompounded fee before withdraw will always be greator then after withdraw
 
-A - B != 0 before rebalce/withdraw ---------- false assumption (PreCondition)
-A - B = 0 , A = tickHigher - currentTick, B = currentTick - lowerTick ----- after rebalce/withdraw (PostCondition)
 */
 
 //SPDX-License-Identifier: MIT
@@ -62,8 +44,6 @@ contract SetupUAV is SetupUAF {
     bool init;
     address public pool;
     uint24 public fees;
-
-    event notmytoken(address);
 
     function FeeTier() private view returns (uint24) {
         uint24 LOW = 500; // 0.05% fee tier
@@ -153,11 +133,9 @@ contract SetupUAV is SetupUAF {
         UAV.toggleOperator(msg.sender);
         
     }
-
+    
     function getCurrentTick() public view returns(int24 tick) {
         ( , tick , , , , , ) = IUniswapV3Pool(pool).slot0();
     }
-
-
 
 }

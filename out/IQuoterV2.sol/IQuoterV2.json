@@ -217,7 +217,7 @@
     "quoteExactOutput(bytes,uint256)": "2f80bb1d",
     "quoteExactOutputSingle((address,address,uint256,uint24,uint160))": "bd21704a"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"}],\"name\":\"quoteExactInput\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"internalType\":\"uint160[]\",\"name\":\"sqrtPriceX96AfterList\",\"type\":\"uint160[]\"},{\"internalType\":\"uint32[]\",\"name\":\"initializedTicksCrossedList\",\"type\":\"uint32[]\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint24\",\"name\":\"fee\",\"type\":\"uint24\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"internalType\":\"struct IQuoterV2.QuoteExactInputSingleParams\",\"name\":\"params\",\"type\":\"tuple\"}],\"name\":\"quoteExactInputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceX96After\",\"type\":\"uint160\"},{\"internalType\":\"uint32\",\"name\":\"initializedTicksCrossed\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"name\":\"quoteExactOutput\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint160[]\",\"name\":\"sqrtPriceX96AfterList\",\"type\":\"uint160[]\"},{\"internalType\":\"uint32[]\",\"name\":\"initializedTicksCrossedList\",\"type\":\"uint32[]\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint24\",\"name\":\"fee\",\"type\":\"uint24\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"internalType\":\"struct IQuoterV2.QuoteExactOutputSingleParams\",\"name\":\"params\",\"type\":\"tuple\"}],\"name\":\"quoteExactOutputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceX96After\",\"type\":\"uint160\"},{\"internalType\":\"uint32\",\"name\":\"initializedTicksCrossed\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"These functions are not marked view because they rely on calling non-view functions and reverting to compute the result. They are also not gas efficient and should not be called on-chain.\",\"kind\":\"dev\",\"methods\":{\"quoteExactInput(bytes,uint256)\":{\"params\":{\"amountIn\":\"The amount of the first token to swap\",\"path\":\"The path of the swap, i.e. each token pair and the pool fee\"},\"returns\":{\"amountOut\":\"The amount of the last token that would be received\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossedList\":\"List of the initialized ticks that the swap crossed for each pool in the path\",\"sqrtPriceX96AfterList\":\"List of the sqrt price after the swap for each pool in the path\"}},\"quoteExactInputSingle((address,address,uint256,uint24,uint160))\":{\"params\":{\"params\":\"The params for the quote, encoded as `QuoteExactInputSingleParams` tokenIn The token being swapped in tokenOut The token being swapped out fee The fee of the token pool to consider for the pair amountIn The desired input amount sqrtPriceLimitX96 The price limit of the pool that cannot be exceeded by the swap\"},\"returns\":{\"amountOut\":\"The amount of `tokenOut` that would be received\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossed\":\"The number of initialized ticks that the swap crossed\",\"sqrtPriceX96After\":\"The sqrt price of the pool after the swap\"}},\"quoteExactOutput(bytes,uint256)\":{\"params\":{\"amountOut\":\"The amount of the last token to receive\",\"path\":\"The path of the swap, i.e. each token pair and the pool fee. Path must be provided in reverse order\"},\"returns\":{\"amountIn\":\"The amount of first token required to be paid\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossedList\":\"List of the initialized ticks that the swap crossed for each pool in the path\",\"sqrtPriceX96AfterList\":\"List of the sqrt price after the swap for each pool in the path\"}},\"quoteExactOutputSingle((address,address,uint256,uint24,uint160))\":{\"params\":{\"params\":\"The params for the quote, encoded as `QuoteExactOutputSingleParams` tokenIn The token being swapped in tokenOut The token being swapped out fee The fee of the token pool to consider for the pair amountOut The desired output amount sqrtPriceLimitX96 The price limit of the pool that cannot be exceeded by the swap\"},\"returns\":{\"amountIn\":\"The amount required as the input for the swap in order to receive `amountOut`\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossed\":\"The number of initialized ticks that the swap crossed\",\"sqrtPriceX96After\":\"The sqrt price of the pool after the swap\"}}},\"title\":\"QuoterV2 Interface\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"quoteExactInput(bytes,uint256)\":{\"notice\":\"Returns the amount out received for a given exact input swap without executing the swap\"},\"quoteExactInputSingle((address,address,uint256,uint24,uint160))\":{\"notice\":\"Returns the amount out received for a given exact input but for a swap of a single pool\"},\"quoteExactOutput(bytes,uint256)\":{\"notice\":\"Returns the amount in required for a given exact output swap without executing the swap\"},\"quoteExactOutputSingle((address,address,uint256,uint24,uint160))\":{\"notice\":\"Returns the amount in required to receive the given exact output amount but for a swap of a single pool\"}},\"notice\":\"Supports quoting the calculated amounts from exact input or exact output swaps.For each pool also tells you the number of initialized ticks crossed and the sqrt price of the pool after the swap.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/dependencies/periphery/contracts/interfaces/IQuoterV2.sol\":\"IQuoterV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@cryptoalgebra/=node_modules/@cryptoalgebra/\",\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@uniswap/=node_modules/@uniswap/\",\":base64-sol/=node_modules/base64-sol/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/dependencies/periphery/contracts/interfaces/IQuoterV2.sol\":{\"keccak256\":\"0x7e931f0cd34811851031c4f1318f59b4a4b427a2d2e2968b8e5ed87a9f7f89d6\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://63a8d7dcdd081004356b39e1b8e19ee56b02b3abd3e4165781bde1a100a35bed\",\"dweb:/ipfs/QmdfpYkMxoaeEd646aSioLZcPodnCnpZy9Ny4j98uAba2J\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"}],\"name\":\"quoteExactInput\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"internalType\":\"uint160[]\",\"name\":\"sqrtPriceX96AfterList\",\"type\":\"uint160[]\"},{\"internalType\":\"uint32[]\",\"name\":\"initializedTicksCrossedList\",\"type\":\"uint32[]\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint24\",\"name\":\"fee\",\"type\":\"uint24\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"internalType\":\"struct IQuoterV2.QuoteExactInputSingleParams\",\"name\":\"params\",\"type\":\"tuple\"}],\"name\":\"quoteExactInputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceX96After\",\"type\":\"uint160\"},{\"internalType\":\"uint32\",\"name\":\"initializedTicksCrossed\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"path\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"name\":\"quoteExactOutput\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint160[]\",\"name\":\"sqrtPriceX96AfterList\",\"type\":\"uint160[]\"},{\"internalType\":\"uint32[]\",\"name\":\"initializedTicksCrossedList\",\"type\":\"uint32[]\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint24\",\"name\":\"fee\",\"type\":\"uint24\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"internalType\":\"struct IQuoterV2.QuoteExactOutputSingleParams\",\"name\":\"params\",\"type\":\"tuple\"}],\"name\":\"quoteExactOutputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"uint160\",\"name\":\"sqrtPriceX96After\",\"type\":\"uint160\"},{\"internalType\":\"uint32\",\"name\":\"initializedTicksCrossed\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"gasEstimate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"These functions are not marked view because they rely on calling non-view functions and reverting to compute the result. They are also not gas efficient and should not be called on-chain.\",\"kind\":\"dev\",\"methods\":{\"quoteExactInput(bytes,uint256)\":{\"params\":{\"amountIn\":\"The amount of the first token to swap\",\"path\":\"The path of the swap, i.e. each token pair and the pool fee\"},\"returns\":{\"amountOut\":\"The amount of the last token that would be received\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossedList\":\"List of the initialized ticks that the swap crossed for each pool in the path\",\"sqrtPriceX96AfterList\":\"List of the sqrt price after the swap for each pool in the path\"}},\"quoteExactInputSingle((address,address,uint256,uint24,uint160))\":{\"params\":{\"params\":\"The params for the quote, encoded as `QuoteExactInputSingleParams` tokenIn The token being swapped in tokenOut The token being swapped out fee The fee of the token pool to consider for the pair amountIn The desired input amount sqrtPriceLimitX96 The price limit of the pool that cannot be exceeded by the swap\"},\"returns\":{\"amountOut\":\"The amount of `tokenOut` that would be received\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossed\":\"The number of initialized ticks that the swap crossed\",\"sqrtPriceX96After\":\"The sqrt price of the pool after the swap\"}},\"quoteExactOutput(bytes,uint256)\":{\"params\":{\"amountOut\":\"The amount of the last token to receive\",\"path\":\"The path of the swap, i.e. each token pair and the pool fee. Path must be provided in reverse order\"},\"returns\":{\"amountIn\":\"The amount of first token required to be paid\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossedList\":\"List of the initialized ticks that the swap crossed for each pool in the path\",\"sqrtPriceX96AfterList\":\"List of the sqrt price after the swap for each pool in the path\"}},\"quoteExactOutputSingle((address,address,uint256,uint24,uint160))\":{\"params\":{\"params\":\"The params for the quote, encoded as `QuoteExactOutputSingleParams` tokenIn The token being swapped in tokenOut The token being swapped out fee The fee of the token pool to consider for the pair amountOut The desired output amount sqrtPriceLimitX96 The price limit of the pool that cannot be exceeded by the swap\"},\"returns\":{\"amountIn\":\"The amount required as the input for the swap in order to receive `amountOut`\",\"gasEstimate\":\"The estimate of the gas that the swap consumes\",\"initializedTicksCrossed\":\"The number of initialized ticks that the swap crossed\",\"sqrtPriceX96After\":\"The sqrt price of the pool after the swap\"}}},\"title\":\"QuoterV2 Interface\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"quoteExactInput(bytes,uint256)\":{\"notice\":\"Returns the amount out received for a given exact input swap without executing the swap\"},\"quoteExactInputSingle((address,address,uint256,uint24,uint160))\":{\"notice\":\"Returns the amount out received for a given exact input but for a swap of a single pool\"},\"quoteExactOutput(bytes,uint256)\":{\"notice\":\"Returns the amount in required for a given exact output swap without executing the swap\"},\"quoteExactOutputSingle((address,address,uint256,uint24,uint160))\":{\"notice\":\"Returns the amount in required to receive the given exact output amount but for a swap of a single pool\"}},\"notice\":\"Supports quoting the calculated amounts from exact input or exact output swaps.For each pool also tells you the number of initialized ticks crossed and the sqrt price of the pool after the swap.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/test/interfaces/IQuoterV2.sol\":\"IQuoterV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@cryptoalgebra/=node_modules/@cryptoalgebra/\",\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@uniswap/=node_modules/@uniswap/\",\":base64-sol/=node_modules/base64-sol/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/test/interfaces/IQuoterV2.sol\":{\"keccak256\":\"0x7e931f0cd34811851031c4f1318f59b4a4b427a2d2e2968b8e5ed87a9f7f89d6\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://63a8d7dcdd081004356b39e1b8e19ee56b02b3abd3e4165781bde1a100a35bed\",\"dweb:/ipfs/QmdfpYkMxoaeEd646aSioLZcPodnCnpZy9Ny4j98uAba2J\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.7.6+commit.7338295f"
@@ -517,12 +517,12 @@
         "bytecodeHash": "ipfs"
       },
       "compilationTarget": {
-        "contracts/dependencies/periphery/contracts/interfaces/IQuoterV2.sol": "IQuoterV2"
+        "contracts/test/interfaces/IQuoterV2.sol": "IQuoterV2"
       },
       "libraries": {}
     },
     "sources": {
-      "contracts/dependencies/periphery/contracts/interfaces/IQuoterV2.sol": {
+      "contracts/test/interfaces/IQuoterV2.sol": {
         "keccak256": "0x7e931f0cd34811851031c4f1318f59b4a4b427a2d2e2968b8e5ed87a9f7f89d6",
         "urls": [
           "bzz-raw://63a8d7dcdd081004356b39e1b8e19ee56b02b3abd3e4165781bde1a100a35bed",
@@ -534,20 +534,20 @@
     "version": 1
   },
   "ast": {
-    "absolutePath": "contracts/dependencies/periphery/contracts/interfaces/IQuoterV2.sol",
-    "id": 14883,
+    "absolutePath": "contracts/test/interfaces/IQuoterV2.sol",
+    "id": 42939,
     "exportedSymbols": {
       "IQuoterV2": [
-        14882
+        42938
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "45:4913:63",
+    "src": "45:4913:188",
     "nodes": [
       {
-        "id": 14793,
+        "id": 42849,
         "nodeType": "PragmaDirective",
-        "src": "45:24:63",
+        "src": "45:24:188",
         "nodes": [],
         "literals": [
           "solidity",
@@ -557,9 +557,9 @@
         ]
       },
       {
-        "id": 14794,
+        "id": 42850,
         "nodeType": "PragmaDirective",
-        "src": "70:19:63",
+        "src": "70:19:188",
         "nodes": [],
         "literals": [
           "abicoder",
@@ -567,19 +567,19 @@
         ]
       },
       {
-        "id": 14882,
+        "id": 42938,
         "nodeType": "ContractDefinition",
-        "src": "542:4415:63",
+        "src": "542:4415:188",
         "nodes": [
           {
-            "id": 14813,
+            "id": 42869,
             "nodeType": "FunctionDefinition",
-            "src": "1191:279:63",
+            "src": "1191:279:188",
             "nodes": [],
             "documentation": {
-              "id": 14796,
+              "id": 42852,
               "nodeType": "StructuredDocumentation",
-              "src": "568:618:63",
+              "src": "568:618:188",
               "text": "@notice Returns the amount out received for a given exact input swap without executing the swap\n @param path The path of the swap, i.e. each token pair and the pool fee\n @param amountIn The amount of the first token to swap\n @return amountOut The amount of the last token that would be received\n @return sqrtPriceX96AfterList List of the sqrt price after the swap for each pool in the path\n @return initializedTicksCrossedList List of the initialized ticks that the swap crossed for each pool in the path\n @return gasEstimate The estimate of the gas that the swap consumes"
             },
             "functionSelector": "cdca1753",
@@ -588,17 +588,17 @@
             "modifiers": [],
             "name": "quoteExactInput",
             "parameters": {
-              "id": 14801,
+              "id": 42857,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14798,
+                  "id": 42854,
                   "mutability": "mutable",
                   "name": "path",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14813,
-                  "src": "1216:17:63",
+                  "scope": 42869,
+                  "src": "1216:17:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -606,10 +606,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 14797,
+                    "id": 42853,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1216:5:63",
+                    "src": "1216:5:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -619,12 +619,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14800,
+                  "id": 42856,
                   "mutability": "mutable",
                   "name": "amountIn",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14813,
-                  "src": "1235:16:63",
+                  "scope": 42869,
+                  "src": "1235:16:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -632,10 +632,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14799,
+                    "id": 42855,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1235:7:63",
+                    "src": "1235:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -644,20 +644,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1215:37:63"
+              "src": "1215:37:188"
             },
             "returnParameters": {
-              "id": 14812,
+              "id": 42868,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14803,
+                  "id": 42859,
                   "mutability": "mutable",
                   "name": "amountOut",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14813,
-                  "src": "1300:17:63",
+                  "scope": 42869,
+                  "src": "1300:17:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -665,10 +665,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14802,
+                    "id": 42858,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1300:7:63",
+                    "src": "1300:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -678,12 +678,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14806,
+                  "id": 42862,
                   "mutability": "mutable",
                   "name": "sqrtPriceX96AfterList",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14813,
-                  "src": "1331:38:63",
+                  "scope": 42869,
+                  "src": "1331:38:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -692,18 +692,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 14804,
+                      "id": 42860,
                       "name": "uint160",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1331:7:63",
+                      "src": "1331:7:188",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint160",
                         "typeString": "uint160"
                       }
                     },
-                    "id": 14805,
+                    "id": 42861,
                     "nodeType": "ArrayTypeName",
-                    "src": "1331:9:63",
+                    "src": "1331:9:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint160_$dyn_storage_ptr",
                       "typeString": "uint160[]"
@@ -713,12 +713,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14809,
+                  "id": 42865,
                   "mutability": "mutable",
                   "name": "initializedTicksCrossedList",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14813,
-                  "src": "1383:43:63",
+                  "scope": 42869,
+                  "src": "1383:43:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -727,18 +727,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 14807,
+                      "id": 42863,
                       "name": "uint32",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1383:6:63",
+                      "src": "1383:6:188",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
                         "typeString": "uint32"
                       }
                     },
-                    "id": 14808,
+                    "id": 42864,
                     "nodeType": "ArrayTypeName",
-                    "src": "1383:8:63",
+                    "src": "1383:8:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
                       "typeString": "uint32[]"
@@ -748,12 +748,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14811,
+                  "id": 42867,
                   "mutability": "mutable",
                   "name": "gasEstimate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14813,
-                  "src": "1440:19:63",
+                  "scope": 42869,
+                  "src": "1440:19:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -761,10 +761,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14810,
+                    "id": 42866,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1440:7:63",
+                    "src": "1440:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -773,28 +773,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1286:183:63"
+              "src": "1286:183:188"
             },
-            "scope": 14882,
+            "scope": 42938,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 14824,
+            "id": 42880,
             "nodeType": "StructDefinition",
-            "src": "1476:174:63",
+            "src": "1476:174:188",
             "nodes": [],
             "canonicalName": "IQuoterV2.QuoteExactInputSingleParams",
             "members": [
               {
                 "constant": false,
-                "id": 14815,
+                "id": 42871,
                 "mutability": "mutable",
                 "name": "tokenIn",
                 "nodeType": "VariableDeclaration",
-                "scope": 14824,
-                "src": "1521:15:63",
+                "scope": 42880,
+                "src": "1521:15:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -802,10 +802,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 14814,
+                  "id": 42870,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1521:7:63",
+                  "src": "1521:7:188",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -816,12 +816,12 @@
               },
               {
                 "constant": false,
-                "id": 14817,
+                "id": 42873,
                 "mutability": "mutable",
                 "name": "tokenOut",
                 "nodeType": "VariableDeclaration",
-                "scope": 14824,
-                "src": "1546:16:63",
+                "scope": 42880,
+                "src": "1546:16:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -829,10 +829,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 14816,
+                  "id": 42872,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1546:7:63",
+                  "src": "1546:7:188",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -843,12 +843,12 @@
               },
               {
                 "constant": false,
-                "id": 14819,
+                "id": 42875,
                 "mutability": "mutable",
                 "name": "amountIn",
                 "nodeType": "VariableDeclaration",
-                "scope": 14824,
-                "src": "1572:16:63",
+                "scope": 42880,
+                "src": "1572:16:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -856,10 +856,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 14818,
+                  "id": 42874,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1572:7:63",
+                  "src": "1572:7:188",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -869,12 +869,12 @@
               },
               {
                 "constant": false,
-                "id": 14821,
+                "id": 42877,
                 "mutability": "mutable",
                 "name": "fee",
                 "nodeType": "VariableDeclaration",
-                "scope": 14824,
-                "src": "1598:10:63",
+                "scope": 42880,
+                "src": "1598:10:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -882,10 +882,10 @@
                   "typeString": "uint24"
                 },
                 "typeName": {
-                  "id": 14820,
+                  "id": 42876,
                   "name": "uint24",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1598:6:63",
+                  "src": "1598:6:188",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint24",
                     "typeString": "uint24"
@@ -895,12 +895,12 @@
               },
               {
                 "constant": false,
-                "id": 14823,
+                "id": 42879,
                 "mutability": "mutable",
                 "name": "sqrtPriceLimitX96",
                 "nodeType": "VariableDeclaration",
-                "scope": 14824,
-                "src": "1618:25:63",
+                "scope": 42880,
+                "src": "1618:25:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -908,10 +908,10 @@
                   "typeString": "uint160"
                 },
                 "typeName": {
-                  "id": 14822,
+                  "id": 42878,
                   "name": "uint160",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1618:7:63",
+                  "src": "1618:7:188",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint160",
                     "typeString": "uint160"
@@ -921,18 +921,18 @@
               }
             ],
             "name": "QuoteExactInputSingleParams",
-            "scope": 14882,
+            "scope": 42938,
             "visibility": "public"
           },
           {
-            "id": 14838,
+            "id": 42894,
             "nodeType": "FunctionDefinition",
-            "src": "2451:265:63",
+            "src": "2451:265:188",
             "nodes": [],
             "documentation": {
-              "id": 14825,
+              "id": 42881,
               "nodeType": "StructuredDocumentation",
-              "src": "1656:790:63",
+              "src": "1656:790:188",
               "text": "@notice Returns the amount out received for a given exact input but for a swap of a single pool\n @param params The params for the quote, encoded as `QuoteExactInputSingleParams`\n tokenIn The token being swapped in\n tokenOut The token being swapped out\n fee The fee of the token pool to consider for the pair\n amountIn The desired input amount\n sqrtPriceLimitX96 The price limit of the pool that cannot be exceeded by the swap\n @return amountOut The amount of `tokenOut` that would be received\n @return sqrtPriceX96After The sqrt price of the pool after the swap\n @return initializedTicksCrossed The number of initialized ticks that the swap crossed\n @return gasEstimate The estimate of the gas that the swap consumes"
             },
             "functionSelector": "c6a5026a",
@@ -941,51 +941,51 @@
             "modifiers": [],
             "name": "quoteExactInputSingle",
             "parameters": {
-              "id": 14828,
+              "id": 42884,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14827,
+                  "id": 42883,
                   "mutability": "mutable",
                   "name": "params",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14838,
-                  "src": "2482:41:63",
+                  "scope": 42894,
+                  "src": "2482:41:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_QuoteExactInputSingleParams_$14824_memory_ptr",
+                    "typeIdentifier": "t_struct$_QuoteExactInputSingleParams_$42880_memory_ptr",
                     "typeString": "struct IQuoterV2.QuoteExactInputSingleParams"
                   },
                   "typeName": {
-                    "id": 14826,
+                    "id": 42882,
                     "name": "QuoteExactInputSingleParams",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 14824,
-                    "src": "2482:27:63",
+                    "referencedDeclaration": 42880,
+                    "src": "2482:27:188",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_QuoteExactInputSingleParams_$14824_storage_ptr",
+                      "typeIdentifier": "t_struct$_QuoteExactInputSingleParams_$42880_storage_ptr",
                       "typeString": "struct IQuoterV2.QuoteExactInputSingleParams"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "2481:43:63"
+              "src": "2481:43:188"
             },
             "returnParameters": {
-              "id": 14837,
+              "id": 42893,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14830,
+                  "id": 42886,
                   "mutability": "mutable",
                   "name": "amountOut",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14838,
-                  "src": "2572:17:63",
+                  "scope": 42894,
+                  "src": "2572:17:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -993,10 +993,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14829,
+                    "id": 42885,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2572:7:63",
+                    "src": "2572:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1006,12 +1006,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14832,
+                  "id": 42888,
                   "mutability": "mutable",
                   "name": "sqrtPriceX96After",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14838,
-                  "src": "2603:25:63",
+                  "scope": 42894,
+                  "src": "2603:25:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1019,10 +1019,10 @@
                     "typeString": "uint160"
                   },
                   "typeName": {
-                    "id": 14831,
+                    "id": 42887,
                     "name": "uint160",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2603:7:63",
+                    "src": "2603:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint160",
                       "typeString": "uint160"
@@ -1032,12 +1032,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14834,
+                  "id": 42890,
                   "mutability": "mutable",
                   "name": "initializedTicksCrossed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14838,
-                  "src": "2642:30:63",
+                  "scope": 42894,
+                  "src": "2642:30:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1045,10 +1045,10 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 14833,
+                    "id": 42889,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2642:6:63",
+                    "src": "2642:6:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint32",
                       "typeString": "uint32"
@@ -1058,12 +1058,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14836,
+                  "id": 42892,
                   "mutability": "mutable",
                   "name": "gasEstimate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14838,
-                  "src": "2686:19:63",
+                  "scope": 42894,
+                  "src": "2686:19:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1071,10 +1071,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14835,
+                    "id": 42891,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2686:7:63",
+                    "src": "2686:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1083,22 +1083,22 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2558:157:63"
+              "src": "2558:157:188"
             },
-            "scope": 14882,
+            "scope": 42938,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 14856,
+            "id": 42912,
             "nodeType": "FunctionDefinition",
-            "src": "3381:280:63",
+            "src": "3381:280:188",
             "nodes": [],
             "documentation": {
-              "id": 14839,
+              "id": 42895,
               "nodeType": "StructuredDocumentation",
-              "src": "2722:654:63",
+              "src": "2722:654:188",
               "text": "@notice Returns the amount in required for a given exact output swap without executing the swap\n @param path The path of the swap, i.e. each token pair and the pool fee. Path must be provided in reverse order\n @param amountOut The amount of the last token to receive\n @return amountIn The amount of first token required to be paid\n @return sqrtPriceX96AfterList List of the sqrt price after the swap for each pool in the path\n @return initializedTicksCrossedList List of the initialized ticks that the swap crossed for each pool in the path\n @return gasEstimate The estimate of the gas that the swap consumes"
             },
             "functionSelector": "2f80bb1d",
@@ -1107,17 +1107,17 @@
             "modifiers": [],
             "name": "quoteExactOutput",
             "parameters": {
-              "id": 14844,
+              "id": 42900,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14841,
+                  "id": 42897,
                   "mutability": "mutable",
                   "name": "path",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14856,
-                  "src": "3407:17:63",
+                  "scope": 42912,
+                  "src": "3407:17:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1125,10 +1125,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 14840,
+                    "id": 42896,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3407:5:63",
+                    "src": "3407:5:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -1138,12 +1138,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14843,
+                  "id": 42899,
                   "mutability": "mutable",
                   "name": "amountOut",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14856,
-                  "src": "3426:17:63",
+                  "scope": 42912,
+                  "src": "3426:17:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1151,10 +1151,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14842,
+                    "id": 42898,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3426:7:63",
+                    "src": "3426:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1163,20 +1163,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3406:38:63"
+              "src": "3406:38:188"
             },
             "returnParameters": {
-              "id": 14855,
+              "id": 42911,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14846,
+                  "id": 42902,
                   "mutability": "mutable",
                   "name": "amountIn",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14856,
-                  "src": "3492:16:63",
+                  "scope": 42912,
+                  "src": "3492:16:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1184,10 +1184,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14845,
+                    "id": 42901,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3492:7:63",
+                    "src": "3492:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1197,12 +1197,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14849,
+                  "id": 42905,
                   "mutability": "mutable",
                   "name": "sqrtPriceX96AfterList",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14856,
-                  "src": "3522:38:63",
+                  "scope": 42912,
+                  "src": "3522:38:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1211,18 +1211,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 14847,
+                      "id": 42903,
                       "name": "uint160",
                       "nodeType": "ElementaryTypeName",
-                      "src": "3522:7:63",
+                      "src": "3522:7:188",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint160",
                         "typeString": "uint160"
                       }
                     },
-                    "id": 14848,
+                    "id": 42904,
                     "nodeType": "ArrayTypeName",
-                    "src": "3522:9:63",
+                    "src": "3522:9:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint160_$dyn_storage_ptr",
                       "typeString": "uint160[]"
@@ -1232,12 +1232,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14852,
+                  "id": 42908,
                   "mutability": "mutable",
                   "name": "initializedTicksCrossedList",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14856,
-                  "src": "3574:43:63",
+                  "scope": 42912,
+                  "src": "3574:43:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1246,18 +1246,18 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 14850,
+                      "id": 42906,
                       "name": "uint32",
                       "nodeType": "ElementaryTypeName",
-                      "src": "3574:6:63",
+                      "src": "3574:6:188",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
                         "typeString": "uint32"
                       }
                     },
-                    "id": 14851,
+                    "id": 42907,
                     "nodeType": "ArrayTypeName",
-                    "src": "3574:8:63",
+                    "src": "3574:8:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
                       "typeString": "uint32[]"
@@ -1267,12 +1267,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14854,
+                  "id": 42910,
                   "mutability": "mutable",
                   "name": "gasEstimate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14856,
-                  "src": "3631:19:63",
+                  "scope": 42912,
+                  "src": "3631:19:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1280,10 +1280,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14853,
+                    "id": 42909,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3631:7:63",
+                    "src": "3631:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1292,28 +1292,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3478:182:63"
+              "src": "3478:182:188"
             },
-            "scope": 14882,
+            "scope": 42938,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 14867,
+            "id": 42923,
             "nodeType": "StructDefinition",
-            "src": "3667:173:63",
+            "src": "3667:173:188",
             "nodes": [],
             "canonicalName": "IQuoterV2.QuoteExactOutputSingleParams",
             "members": [
               {
                 "constant": false,
-                "id": 14858,
+                "id": 42914,
                 "mutability": "mutable",
                 "name": "tokenIn",
                 "nodeType": "VariableDeclaration",
-                "scope": 14867,
-                "src": "3713:15:63",
+                "scope": 42923,
+                "src": "3713:15:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1321,10 +1321,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 14857,
+                  "id": 42913,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3713:7:63",
+                  "src": "3713:7:188",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1335,12 +1335,12 @@
               },
               {
                 "constant": false,
-                "id": 14860,
+                "id": 42916,
                 "mutability": "mutable",
                 "name": "tokenOut",
                 "nodeType": "VariableDeclaration",
-                "scope": 14867,
-                "src": "3738:16:63",
+                "scope": 42923,
+                "src": "3738:16:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1348,10 +1348,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 14859,
+                  "id": 42915,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3738:7:63",
+                  "src": "3738:7:188",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1362,12 +1362,12 @@
               },
               {
                 "constant": false,
-                "id": 14862,
+                "id": 42918,
                 "mutability": "mutable",
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
-                "scope": 14867,
-                "src": "3764:14:63",
+                "scope": 42923,
+                "src": "3764:14:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1375,10 +1375,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 14861,
+                  "id": 42917,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3764:7:63",
+                  "src": "3764:7:188",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1388,12 +1388,12 @@
               },
               {
                 "constant": false,
-                "id": 14864,
+                "id": 42920,
                 "mutability": "mutable",
                 "name": "fee",
                 "nodeType": "VariableDeclaration",
-                "scope": 14867,
-                "src": "3788:10:63",
+                "scope": 42923,
+                "src": "3788:10:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1401,10 +1401,10 @@
                   "typeString": "uint24"
                 },
                 "typeName": {
-                  "id": 14863,
+                  "id": 42919,
                   "name": "uint24",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3788:6:63",
+                  "src": "3788:6:188",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint24",
                     "typeString": "uint24"
@@ -1414,12 +1414,12 @@
               },
               {
                 "constant": false,
-                "id": 14866,
+                "id": 42922,
                 "mutability": "mutable",
                 "name": "sqrtPriceLimitX96",
                 "nodeType": "VariableDeclaration",
-                "scope": 14867,
-                "src": "3808:25:63",
+                "scope": 42923,
+                "src": "3808:25:188",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1427,10 +1427,10 @@
                   "typeString": "uint160"
                 },
                 "typeName": {
-                  "id": 14865,
+                  "id": 42921,
                   "name": "uint160",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3808:7:63",
+                  "src": "3808:7:188",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint160",
                     "typeString": "uint160"
@@ -1440,18 +1440,18 @@
               }
             ],
             "name": "QuoteExactOutputSingleParams",
-            "scope": 14882,
+            "scope": 42938,
             "visibility": "public"
           },
           {
-            "id": 14881,
+            "id": 42937,
             "nodeType": "FunctionDefinition",
-            "src": "4689:266:63",
+            "src": "4689:266:188",
             "nodes": [],
             "documentation": {
-              "id": 14868,
+              "id": 42924,
               "nodeType": "StructuredDocumentation",
-              "src": "3846:838:63",
+              "src": "3846:838:188",
               "text": "@notice Returns the amount in required to receive the given exact output amount but for a swap of a single pool\n @param params The params for the quote, encoded as `QuoteExactOutputSingleParams`\n tokenIn The token being swapped in\n tokenOut The token being swapped out\n fee The fee of the token pool to consider for the pair\n amountOut The desired output amount\n sqrtPriceLimitX96 The price limit of the pool that cannot be exceeded by the swap\n @return amountIn The amount required as the input for the swap in order to receive `amountOut`\n @return sqrtPriceX96After The sqrt price of the pool after the swap\n @return initializedTicksCrossed The number of initialized ticks that the swap crossed\n @return gasEstimate The estimate of the gas that the swap consumes"
             },
             "functionSelector": "bd21704a",
@@ -1460,51 +1460,51 @@
             "modifiers": [],
             "name": "quoteExactOutputSingle",
             "parameters": {
-              "id": 14871,
+              "id": 42927,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14870,
+                  "id": 42926,
                   "mutability": "mutable",
                   "name": "params",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14881,
-                  "src": "4721:42:63",
+                  "scope": 42937,
+                  "src": "4721:42:188",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_QuoteExactOutputSingleParams_$14867_memory_ptr",
+                    "typeIdentifier": "t_struct$_QuoteExactOutputSingleParams_$42923_memory_ptr",
                     "typeString": "struct IQuoterV2.QuoteExactOutputSingleParams"
                   },
                   "typeName": {
-                    "id": 14869,
+                    "id": 42925,
                     "name": "QuoteExactOutputSingleParams",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 14867,
-                    "src": "4721:28:63",
+                    "referencedDeclaration": 42923,
+                    "src": "4721:28:188",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_QuoteExactOutputSingleParams_$14867_storage_ptr",
+                      "typeIdentifier": "t_struct$_QuoteExactOutputSingleParams_$42923_storage_ptr",
                       "typeString": "struct IQuoterV2.QuoteExactOutputSingleParams"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "4720:44:63"
+              "src": "4720:44:188"
             },
             "returnParameters": {
-              "id": 14880,
+              "id": 42936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 14873,
+                  "id": 42929,
                   "mutability": "mutable",
                   "name": "amountIn",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14881,
-                  "src": "4812:16:63",
+                  "scope": 42937,
+                  "src": "4812:16:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1512,10 +1512,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14872,
+                    "id": 42928,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4812:7:63",
+                    "src": "4812:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1525,12 +1525,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14875,
+                  "id": 42931,
                   "mutability": "mutable",
                   "name": "sqrtPriceX96After",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14881,
-                  "src": "4842:25:63",
+                  "scope": 42937,
+                  "src": "4842:25:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1538,10 +1538,10 @@
                     "typeString": "uint160"
                   },
                   "typeName": {
-                    "id": 14874,
+                    "id": 42930,
                     "name": "uint160",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4842:7:63",
+                    "src": "4842:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint160",
                       "typeString": "uint160"
@@ -1551,12 +1551,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14877,
+                  "id": 42933,
                   "mutability": "mutable",
                   "name": "initializedTicksCrossed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14881,
-                  "src": "4881:30:63",
+                  "scope": 42937,
+                  "src": "4881:30:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1564,10 +1564,10 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 14876,
+                    "id": 42932,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4881:6:63",
+                    "src": "4881:6:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint32",
                       "typeString": "uint32"
@@ -1577,12 +1577,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 14879,
+                  "id": 42935,
                   "mutability": "mutable",
                   "name": "gasEstimate",
                   "nodeType": "VariableDeclaration",
-                  "scope": 14881,
-                  "src": "4925:19:63",
+                  "scope": 42937,
+                  "src": "4925:19:188",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1590,10 +1590,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 14878,
+                    "id": 42934,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4925:7:63",
+                    "src": "4925:7:188",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1602,9 +1602,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "4798:156:63"
+              "src": "4798:156:188"
             },
-            "scope": 14882,
+            "scope": 42938,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1615,20 +1615,20 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 14795,
+          "id": 42851,
           "nodeType": "StructuredDocumentation",
-          "src": "91:451:63",
+          "src": "91:451:188",
           "text": "@title QuoterV2 Interface\n @notice Supports quoting the calculated amounts from exact input or exact output swaps.\n @notice For each pool also tells you the number of initialized ticks crossed and the sqrt price of the pool after the swap.\n @dev These functions are not marked view because they rely on calling non-view functions and reverting\n to compute the result. They are also not gas efficient and should not be called on-chain."
         },
         "fullyImplemented": false,
         "linearizedBaseContracts": [
-          14882
+          42938
         ],
         "name": "IQuoterV2",
-        "scope": 14883
+        "scope": 42939
       }
     ],
     "license": "GPL-2.0-or-later"
   },
-  "id": 63
+  "id": 188
 }

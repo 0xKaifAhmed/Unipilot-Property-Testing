@@ -146,17 +146,17 @@
   },
   "ast": {
     "absolutePath": "contracts/dependencies/interfaces/IUniswapV3PoolDeployer.sol",
-    "id": 11163,
+    "id": 11190,
     "exportedSymbols": {
       "IUniswapV3PoolDeployer": [
-        11162
+        11189
       ]
     },
     "nodeType": "SourceUnit",
     "src": "45:1255:21",
     "nodes": [
       {
-        "id": 11146,
+        "id": 11173,
         "nodeType": "PragmaDirective",
         "src": "45:24:21",
         "nodes": [],
@@ -168,17 +168,17 @@
         ]
       },
       {
-        "id": 11162,
+        "id": 11189,
         "nodeType": "ContractDefinition",
         "src": "474:825:21",
         "nodes": [
           {
-            "id": 11161,
+            "id": 11188,
             "nodeType": "FunctionDefinition",
             "src": "1078:219:21",
             "nodes": [],
             "documentation": {
-              "id": 11148,
+              "id": 11175,
               "nodeType": "StructuredDocumentation",
               "src": "513:560:21",
               "text": "@notice Get the parameters to be used in constructing the pool, set transiently during pool creation.\n @dev Called by the pool constructor to fetch the parameters of the pool\n Returns factory The factory address\n Returns token0 The first token of the pool by address sort order\n Returns token1 The second token of the pool by address sort order\n Returns fee The fee collected upon every swap in the pool, denominated in hundredths of a bip\n Returns tickSpacing The minimum number of ticks between initialized ticks"
@@ -189,22 +189,22 @@
             "modifiers": [],
             "name": "parameters",
             "parameters": {
-              "id": 11149,
+              "id": 11176,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1097:2:21"
             },
             "returnParameters": {
-              "id": 11160,
+              "id": 11187,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 11151,
+                  "id": 11178,
                   "mutability": "mutable",
                   "name": "factory",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11161,
+                  "scope": 11188,
                   "src": "1160:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -213,7 +213,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 11150,
+                    "id": 11177,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1160:7:21",
@@ -227,11 +227,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 11153,
+                  "id": 11180,
                   "mutability": "mutable",
                   "name": "token0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11161,
+                  "scope": 11188,
                   "src": "1189:14:21",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -240,7 +240,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 11152,
+                    "id": 11179,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1189:7:21",
@@ -254,11 +254,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 11155,
+                  "id": 11182,
                   "mutability": "mutable",
                   "name": "token1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11161,
+                  "scope": 11188,
                   "src": "1217:14:21",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -267,7 +267,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 11154,
+                    "id": 11181,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1217:7:21",
@@ -281,11 +281,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 11157,
+                  "id": 11184,
                   "mutability": "mutable",
                   "name": "fee",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11161,
+                  "scope": 11188,
                   "src": "1245:10:21",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -294,7 +294,7 @@
                     "typeString": "uint24"
                   },
                   "typeName": {
-                    "id": 11156,
+                    "id": 11183,
                     "name": "uint24",
                     "nodeType": "ElementaryTypeName",
                     "src": "1245:6:21",
@@ -307,11 +307,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 11159,
+                  "id": 11186,
                   "mutability": "mutable",
                   "name": "tickSpacing",
                   "nodeType": "VariableDeclaration",
-                  "scope": 11161,
+                  "scope": 11188,
                   "src": "1269:17:21",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -320,7 +320,7 @@
                     "typeString": "int24"
                   },
                   "typeName": {
-                    "id": 11158,
+                    "id": 11185,
                     "name": "int24",
                     "nodeType": "ElementaryTypeName",
                     "src": "1269:5:21",
@@ -334,7 +334,7 @@
               ],
               "src": "1146:150:21"
             },
-            "scope": 11162,
+            "scope": 11189,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -345,17 +345,17 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 11147,
+          "id": 11174,
           "nodeType": "StructuredDocumentation",
           "src": "71:403:21",
           "text": "@title An interface for a contract that is capable of deploying Uniswap V3 Pools\n @notice A contract that constructs a pool must implement this to pass arguments to the pool\n @dev This is used to avoid having constructor arguments in the pool contract, which results in the init code hash\n of the pool being constant allowing the CREATE2 address of the pool to be cheaply computed on-chain"
         },
         "fullyImplemented": false,
         "linearizedBaseContracts": [
-          11162
+          11189
         ],
         "name": "IUniswapV3PoolDeployer",
-        "scope": 11163
+        "scope": 11190
       }
     ],
     "license": "GPL-2.0-or-later"
