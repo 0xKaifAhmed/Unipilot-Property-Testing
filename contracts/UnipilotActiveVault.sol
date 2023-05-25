@@ -32,7 +32,7 @@ contract UnipilotActiveVault is ERC20Permit, IUnipilotVault {
     int24 private tickSpacing;
 
     TicksData public ticksData;
-    IUniswapV3Pool private pool;
+    IUniswapV3Pool public pool;
     IUnipilotFactory private unipilotFactory;
     uint256 internal constant MIN_INITIAL_SHARES = 1e3;
 

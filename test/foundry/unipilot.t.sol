@@ -7,8 +7,9 @@ import "../../contracts/foundry/SetupUAV.sol";
 import "../../contracts/foundry/Token.sol";
 import { TransferHelper as TH } from "../../contracts/libraries/TransferHelper.sol";
 import { UniswapLiquidityManagement as ULM } from "../../contracts/libraries/UniswapLiquidityManagement.sol";
-import { IUniswapV3Pool as IV3pool } from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
+import { IUniswapV3Pool as IV3pool } from "../../contracts/dependencies/interfaces/IUniswapV3Pool.sol";
 import { UniswapV3Pool } from "../../contracts/dependencies/UniswapV3Pool.sol";
+import { UniswapPoolActions } from "../../contracts/libraries/UniswapPoolActions.sol";
 
 contract Fuzz is Test {
     SetupUAV fuzz;
@@ -16,10 +17,17 @@ contract Fuzz is Test {
     Token token1;
     uint256 reserve0;
     uint256 reserve1;
+
     IV3pool public pool;
     using ULM for IUniswapV3Pool;
     using LowGasSafeMath for uint256;
+    using UniswapPoolActions for IUniswapV3Pool;
     uint8 onlyonce;
+
+    event lpShare(uint256);
+    event balance(string, uint256);
+    event tickData(string, int24);
+    event liquidityAmount(string, uint128);
 
     function setUp() public {
         //minting tokens
@@ -49,8 +57,8 @@ contract Fuzz is Test {
         uint256 b,
         bytes calldata data
     ) external {
-        token0.transfer(fuzz.pool(), a);
-        token1.transfer(fuzz.pool(), b);
+        token0.transfer(fuzz.pool(), b);
+        token1.transfer(fuzz.pool(), a);
     }
 
     function uniswapV3SwapCallback(
@@ -98,7 +106,7 @@ contract Fuzz is Test {
         uint256 amount1,
         address sender
     ) private returns (uint256 lp) {
-        vm.roll(block.number + 100);
+        vm.roll(block.number + 100 minutes);
         require(token0.balanceOf(sender) > amount0);
 
         if (onlyonce == 0) {
@@ -109,7 +117,8 @@ contract Fuzz is Test {
             onlyonce = 1;
         }
         (lp, , ) = fuzz.UAV().deposit(amount0, amount1, sender);
-        vm.roll(block.number + 100);
+        vm.roll(block.number + 100 minutes);
+        // vm.warp(block.timestamp + 100 minutes);
     }
 
     function Withdraw(
@@ -129,20 +138,19 @@ contract Fuzz is Test {
         (int24 baseLower, int24 baseUpper, , , , ) = fuzz.ST().getTicks(
             fuzz.pool()
         );
-        fuzz.UAV().rebalance(swapAmount, true, baseLower, baseUpper);
+        fuzz.UAV().rebalance(swapAmount, false, baseLower, baseUpper);
         vm.warp(block.timestamp + 100 minutes);
         //  fuzz.UAV().readjustLiquidity(swapAmount);
     }
 
     ///////////////////////////////helper functions//////////////////////////////////
-
     function calculateShare(
         uint256 amount0Max,
         uint256 amount1Max,
         uint256 reserveAmount0,
         uint256 reserveAmount1,
         uint256 totalSupply
-    ) internal pure returns (uint256 shares, uint256 amount0, uint256 amount1) {
+    ) internal view returns (uint256 shares, uint256 amount0, uint256 amount1) {
         if (totalSupply == 0) {
             // For first deposit, just use the amounts desired
             amount0 = amount0Max;
@@ -175,45 +183,71 @@ contract Fuzz is Test {
         }
     }
 
-    function calculateReservesAndFee() private {
-        (int24 btl, int24 btu, int24 rtl, int24 rtu) = fuzz.UAV().ticksData();
-        // calculate LP shares of amount getting deposite according to previous deposits
-        (
-            uint256 baseAmount0,
-            uint256 baseAmount1,
-            uint256 baseFee0,
-            uint256 baseFee1,
+    function computeLpShares(
+        uint256 amount0Max,
+        uint256 amount1Max,
+        uint256 balance0,
+        uint256 balance1,
+        uint256 totalSupply,
+        int24 btl,
+        int24 btu
+    ) internal returns (uint256 shares, uint256 amount0, uint256 amount1) {
+        vm.startPrank(address(fuzz.UAV()));
+        uint128 liquidity = UniswapPoolActions.updatePosition(
+            fuzz.UAV().pool(),
+            btl,
+            btu,
+            address(fuzz.UAV())
+        );
 
-        ) = ULM.getReserves(IV3pool(fuzz.pool()), btl, btu);
+        emit tickData("Base tick lower", btl);
+        emit tickData("Base tick upper", btu);
+        emit liquidityAmount("Liquidity", liquidity);
 
-        (
-            uint256 rangeAmount0,
-            uint256 rangeAmount1,
-            uint256 rangeFee0,
-            uint256 rangeFee1,
+        uint256 res0;
+        uint256 res1;
+        uint256 fees0;
+        uint256 fees1;
 
-        ) = ULM.getReserves(IV3pool(fuzz.pool()), rtl, rtu);
+        if (liquidity > 0) {
+            (res0, res1, fees0, fees1) = ULM.collectableAmountsInPosition(
+                fuzz.UAV().pool(),
+                btl,
+                btu,
+                address(fuzz.UAV())
+            );
+        }
 
-        reserve0 = baseAmount0
-            .add(rangeAmount0)
-            .add(baseFee0)
-            .add(rangeFee0)
-            .add(fuzz.UAV()._balance0());
+        reserve0 = res0.add(fees0).add(balance0);
+        reserve1 = res1.add(fees1).add(balance1);
+        emit balance("reserves 0", reserve0);
+        emit balance("reserves 1", reserve1);
+        // If total supply > 0, pool can't be empty
+        // assert(totalSupply == 0 || reserve0 != 0 || reserve1 != 0);
+        require(
+            totalSupply == 0 || reserve0 != 0 || reserve1 != 0,
+            "total supply"
+        );
 
-        reserve1 = baseAmount1
-            .add(rangeAmount1)
-            .add(baseFee1)
-            .add(rangeFee1)
-            .add(fuzz.UAV()._balance1());
+        (shares, amount0, amount1) = calculateShare(
+            amount0Max,
+            amount1Max,
+            reserve0,
+            reserve1,
+            totalSupply
+        );
+        vm.stopPrank();
     }
 
     ////////////////////////////////////////////////////////////////////////////////
 
     function testMain(uint256 amount0, uint256 amount1, uint256 swap) public {
-        //invariant_MintedLp_ReservesAndFee(amount0, amount1);
-
+        //invariant_MintedLp_ReservesAndFee(amount0, amount1, swap);
+        //invariant_MintedLp_Reserves(1 ether, 1 ether);
         //invariant_Ticks(amount0, amount1, swap);
-        invariant_Diff_Lps(amount0, amount1, swap);
+        //invariant_Diff_Lps(amount0, amount1, swap);
+        //invariant_MintedLpSameAsUnipilot(amount0, amount1);
+        invariant_liquidityBackInRange(amount0, amount1, swap);
     }
 
     /*
@@ -273,16 +307,12 @@ contract Fuzz is Test {
         assert(preLP > postLP);
     }
 
-    event lpShare(uint256);
-    event balance(string, uint256);
-    event tickData(string, int24);
-
     // Calculate the LP tokens accourding to the balance of t0 and t1 on unipilot position on
     // uniswap and make a bat while depositing the same amount through unipilot should be the same:
     // This invariant ensures that the LP tokens minted through Unipilot are accurately reflecting
     // the balance of token0 and token1 in the Unipilot position on Uniswap, and that there are no
     // discrepancies or unexpected errors in the calculation.
-    //This invariant been written under the consideration when there is no liquidity minted.
+    // This invariant been written under the consideration when there is no liquidity minted.
     function invariant_MintedLpSameAsUnipilot(
         uint256 Amount0,
         uint256 Amount1
@@ -327,66 +357,71 @@ contract Fuzz is Test {
 
         //Depositing preLiqudity to hit the second condtion of calculateLpShares
         Deposit(Amount0, Amount1, address(this));
-        (int24 btl, int24 btu, int24 rtl, int24 rtu) = fuzz.UAV().ticksData();
         // calculate LP shares of amount getting deposite according to previous deposits
-        (uint256 baseAmount0, uint256 baseAmount1, , , ) = ULM.getReserves(
-            IV3pool(fuzz.pool()),
+        (int24 btl, int24 btu, , ) = fuzz.UAV().ticksData();
+        (uint256 Selflp, , ) = computeLpShares(
+            Amount0,
+            Amount1,
+            fuzz.UAV()._balance0(),
+            fuzz.UAV()._balance1(),
+            fuzz.UAV()._totalSupply(),
             btl,
             btu
         );
-
-        (uint256 rangeAmount0, uint256 rangeAmount1, , , ) = ULM.getReserves(
-            IV3pool(fuzz.pool()),
-            rtl,
-            rtu
-        );
-
-        reserve0 = baseAmount0.add(rangeAmount0).add(fuzz.UAV()._balance0());
-        reserve1 = baseAmount1.add(rangeAmount1).add(fuzz.UAV()._balance1());
-
-        (uint256 Selflp, , ) = calculateShare(
-            Amount0,
-            Amount1,
-            reserve0,
-            reserve1,
-            fuzz.UAV()._totalSupply()
-        );
-
         //then actually deposit that amount
-        mintTokens();
+        vm.warp(block.timestamp + 100);
         uint256 Unipilotlp = Deposit(Amount0, Amount1, address(this));
 
         //check if you get the same amount
-        emit lpShare(Selflp);
-        emit lpShare(Unipilotlp);
+        // emit lpShare(Selflp);
+        //emit lpShare(Unipilotlp);
         assertEq(Selflp, Unipilotlp);
     }
 
     function invariant_MintedLp_ReservesAndFee(
         uint256 Amount0,
-        uint256 Amount1
+        uint256 Amount1,
+        uint256 swapAmount
     ) public {
+        //PreConditions
         //PreConditions
         Amount0 = bound(Amount0, 1 ether, 1e10 ether);
         Amount1 = bound(Amount1, 1 ether, 1e10 ether);
+        swapAmount = bound(swapAmount, 1 ether, 1e10 ether);
         require(Amount0 >= 1 ether && Amount1 >= 1 ether, "Saving From ML");
+        require(address(token0) != address(0), "Mint tokens First");
 
         //Depositing preLiqudity to hit the second condtion of calculateLpShares
         Deposit(Amount0, Amount1, address(this));
-        swapToken(true, 1 ether);
-
-        calculateReservesAndFee();
-
-        (uint256 Selflp, , ) = calculateShare(
-            Amount0,
-            Amount1,
-            reserve0,
-            reserve1,
-            fuzz.UAV()._totalSupply()
+        vm.warp(block.timestamp + 100);
+        Deposit(100 ether, 100 ether, address(this));
+        vm.warp(block.timestamp + 100);
+        (int24 baseLower, int24 baseUpper, , , , ) = fuzz.ST().getTicks(
+            fuzz.pool()
         );
 
+        _mint(baseLower - 1000, baseUpper + 1000);
+        vm.warp(block.timestamp + 100);
+
+        swapToken(true, int256(swapAmount));
+        vm.warp(block.timestamp + 100);
+
+        (int24 btl, int24 btu, , ) = fuzz.UAV().ticksData();
+        (uint256 Selflp, , ) = computeLpShares(
+            Amount0,
+            Amount1,
+            fuzz.UAV()._balance0(),
+            fuzz.UAV()._balance1(),
+            fuzz.UAV()._totalSupply(),
+            btl,
+            btu
+        );
+        console.log(reserve0);
+        console.log(reserve1);
+        console.log(fuzz.UAV()._totalSupply());
+
         //then actually deposit that amount
-        mintTokens();
+        // mintTokens();
         uint256 Unipilotlp = Deposit(Amount0, Amount1, address(this));
 
         //check if you get the same amount
@@ -395,12 +430,12 @@ contract Fuzz is Test {
         assertEq(Selflp, Unipilotlp);
     }
 
-    //A - B = ut-lt , A = tickHigher - currentTick, B = currentTick - lowerTick ---
-    //-- after rebalce (PostCondition)
-    //ut-ct = x
-    //ct-lt = y
-    //ut-lt = z
-    //x+y = z
+    // A - B = ut-lt , A = tickHigher - currentTick, B = currentTick - lowerTick ---
+    // -- after rebalce (PostCondition)
+    // ut-ct = x
+    // ct-lt = y
+    // ut-lt = z
+    // x+y = z
     function invariant_Ticks(
         uint256 Amount0,
         uint256 Amount1,
@@ -472,5 +507,58 @@ contract Fuzz is Test {
         uint256 postLP = Deposit(Amount0, Amount1, address(this));
 
         require(preLP > postLP, "Improper LP minting");
+    }
+
+    //Make liquidity lot of range
+    //call readjust liquidity 
+    //get ticks from ST
+    //assert position back in range
+
+    function invariant_liquidityBackInRange(
+        uint256 Amount0,
+        uint256 Amount1,
+        uint256 swapAmount
+        ) public {
+        Amount0 = bound(Amount0, 1 ether, 1e10 ether);
+        Amount1 = bound(Amount1, 1 ether, 1e10 ether);
+        swapAmount = bound(swapAmount, 1 ether, 1e10 ether);
+        require(Amount0 >= 1 ether && Amount1 >= 1 ether, "Saving From ML");
+        require(address(token0) != address(0), "Mint tokens First");
+
+        //Depositing preLiqudity to hit the second condtion of calculateLpShares
+        Deposit(Amount0, Amount1, address(this));
+        vm.warp(block.timestamp + 100);
+       // Deposit(100 ether, 100 ether, address(this));
+       // vm.warp(block.timestamp + 100);
+        (int24 btl, int24 btu, , , , ) = fuzz.ST().getTicks(
+            fuzz.pool()
+        );
+
+        //minting on Uniswap to create depth in pool
+        for(int24 i; i<10; i++){
+        _mint(btl - i*1000, btu + i*2000);
+        vm.warp(block.timestamp + 100);
+        }
+        //too much swaps will make liquidity out of range
+        for(uint i; i<50; i++){
+        swapToken(true, int256(swapAmount));
+        vm.warp(block.timestamp + 100);
+        }
+
+        //fetching ticks again to mint liquidity around current ticks
+        (int24 baseLower, int24 baseUpper, , , , ) = fuzz.ST().getTicks(
+            fuzz.pool()
+        );
+        emit tickData("baseLower  :", baseLower);
+        emit tickData("baseUpper  :", baseUpper);
+        
+         uint256 balance0 = token1.balanceOf(fuzz.pool());
+         uint256 balance1 = token0.balanceOf(fuzz.pool());
+
+         Rebalance(uint8(50));
+       // fuzz.UAV().readjustLiquidity(uint8(50));
+        // token0.balanceOf(fuzz.pool());
+        // token1.balanceOf(fuzz.pool());
+
     }
 }

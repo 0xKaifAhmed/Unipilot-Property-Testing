@@ -70,18 +70,15 @@ library UniswapLiquidityManagement {
             );
     }
 
-    /// @dev Amount of liquidity in contract position.
-    /// @param pool Uniswap V3 pool
-    /// @param _tickLower The lower tick of the range
-    /// @param _tickUpper The upper tick of the range
-    /// @return liquidity stored in position
+   
+
+    event position(string,bytes32);
     function getPositionLiquidity(
         IUniswapV3Pool pool,
         int24 _tickLower,
         int24 _tickUpper
     )
         internal
-        view
         returns (
             uint128 liquidity,
             uint128 tokensOwed0,
@@ -95,6 +92,29 @@ library UniswapLiquidityManagement {
         );
         (liquidity, , , tokensOwed0, tokensOwed1) = pool.positions(positionKey);
     }
+
+     function getPositionLiquidity(
+        IUniswapV3Pool pool,
+        int24 _tickLower,
+        int24 _tickUpper,
+        address minterAddress
+    )
+        internal
+        returns (
+            uint128 liquidity,
+            uint128 tokensOwed0,
+            uint128 tokensOwed1
+        )
+    {
+        bytes32 positionKey = PositionKey.compute(
+            minterAddress,
+            _tickLower,
+            _tickUpper
+        );
+        emit position("PositionKey",positionKey );
+        (liquidity, , , tokensOwed0, tokensOwed1) = pool.positions(positionKey);
+    }
+
 
     /// @dev Rounds tick down towards negative infinity so that it's a multiple
     /// of `tickSpacing`.
@@ -137,7 +157,6 @@ library UniswapLiquidityManagement {
         int24 _upperTick
     )
         internal
-        view
         returns (
             uint256,
             uint256,
@@ -150,6 +169,31 @@ library UniswapLiquidityManagement {
             uint128 earnable0,
             uint128 earnable1
         ) = getPositionLiquidity(pool, _lowerTick, _upperTick);
+        (uint256 burnable0, uint256 burnable1) = UniswapLiquidityManagement
+            .getAmountsForLiquidity(pool, liquidity, _lowerTick, _upperTick);
+
+        return (burnable0, burnable1, earnable0, earnable1);
+    }
+
+     function collectableAmountsInPosition(
+        IUniswapV3Pool pool,
+        int24 _lowerTick,
+        int24 _upperTick,
+        address minter
+    )
+        internal
+        returns (
+            uint256,
+            uint256,
+            uint256,
+            uint256
+        )
+    {
+        (
+            uint128 liquidity,
+            uint128 earnable0,
+            uint128 earnable1
+        ) = getPositionLiquidity(pool, _lowerTick, _upperTick, minter);
         (uint256 burnable0, uint256 burnable1) = UniswapLiquidityManagement
             .getAmountsForLiquidity(pool, liquidity, _lowerTick, _upperTick);
 

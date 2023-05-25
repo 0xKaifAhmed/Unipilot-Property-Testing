@@ -27,6 +27,21 @@ library UniswapPoolActions {
         }
     }
 
+event lq(string, uint128);
+     function updatePosition(
+        IUniswapV3Pool pool,
+        int24 tickLower,
+        int24 tickUpper,
+        address minter
+    ) internal returns (uint128 liquidity ) {
+        (liquidity, , ) = pool.getPositionLiquidity(tickLower, tickUpper, minter);
+
+        emit lq("liquidity",liquidity );
+        if (liquidity > 0) {
+            pool.burn(tickLower, tickUpper, 0);
+        }
+    }
+
     function burnLiquidity(
         IUniswapV3Pool pool,
         int24 tickLower,
