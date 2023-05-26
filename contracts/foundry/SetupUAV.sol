@@ -94,7 +94,7 @@ contract SetupUAV is SetupUAF {
 
     //Createting UnipilotActiveVault using UnipilotActiveFactory
     //Arbitary (valid in range) values been sent by echidna to fuzz different scenarios
-    function testInit(
+    function Init(
         address t0,
         address t1,
         uint256 amount0,

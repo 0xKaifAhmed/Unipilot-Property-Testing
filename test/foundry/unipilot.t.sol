@@ -39,7 +39,7 @@ contract Fuzz is Test {
         pool = IV3pool(fuzz.pool());
 
         //init test
-        fuzz.testInit(address(token0), address(token1), 1, 1, 1);
+        fuzz.Init(address(token0), address(token1), 1, 1, 1);
     }
 
     function _mint(int24 tl, int24 tu) private {
@@ -53,12 +53,12 @@ contract Fuzz is Test {
     }
 
     function uniswapV3MintCallback(
-        uint256 a,
-        uint256 b,
+        uint256 t0,
+        uint256 t1,
         bytes calldata data
     ) external {
-        token0.transfer(fuzz.pool(), b);
-        token1.transfer(fuzz.pool(), a);
+        token0.transfer(fuzz.pool(), t1);
+        token1.transfer(fuzz.pool(), t0);
     }
 
     function uniswapV3SwapCallback(
@@ -138,9 +138,8 @@ contract Fuzz is Test {
         (int24 baseLower, int24 baseUpper, , , , ) = fuzz.ST().getTicks(
             fuzz.pool()
         );
-        fuzz.UAV().rebalance(swapAmount, false, baseLower, baseUpper);
+        fuzz.UAV().rebalance(swapAmount, true, baseLower, baseUpper);
         vm.warp(block.timestamp + 100 minutes);
-        //  fuzz.UAV().readjustLiquidity(swapAmount);
     }
 
     ///////////////////////////////helper functions//////////////////////////////////
@@ -241,14 +240,15 @@ contract Fuzz is Test {
 
     ////////////////////////////////////////////////////////////////////////////////
 
-    function testMain(uint256 amount0, uint256 amount1, uint256 swap) public {
-        //invariant_MintedLp_ReservesAndFee(amount0, amount1, swap);
-        //invariant_MintedLp_Reserves(1 ether, 1 ether);
-        //invariant_Ticks(amount0, amount1, swap);
-        //invariant_Diff_Lps(amount0, amount1, swap);
-        //invariant_MintedLpSameAsUnipilot(amount0, amount1);
-        invariant_liquidityBackInRange(amount0, amount1, swap);
-    }
+    // function testMain(uint256 amount0, uint256 amount1, uint256 swap) public {
+    //     //invariant_MintedLp_ReservesAndFee(amount0, amount1, swap);
+    //     //invariant_MintedLp_Reserves(1 ether, 1 ether);
+    //     //invariant_Ticks(amount0, amount1, swap);
+    //     //invariant_Diff_Lps(amount0, amount1, swap);
+    //     //invariant_MintedLpSameAsUnipilot(amount0, amount1);
+    //     // invariant_liquidityBackInRange(amount0, amount1, swap);
+    //     test_2(amount0, amount1);
+    // }
 
     /*
     Depositing tokens should increase the total supply of LP tokens and the balance of the 
@@ -258,7 +258,9 @@ contract Fuzz is Test {
     balance of the contract in both token0 and token1 should also increase by the appropriate 
     amounts. This invariant should be checked after every deposit.
     */
-    function invariant_checkLpSupplyBeforeAndAfterDeposit(
+
+    //invariant_checkLpSupplyBeforeAndAfterDeposit
+    function test_1(
         uint256 amount0,
         uint256 amount1
     ) public {
@@ -286,7 +288,8 @@ contract Fuzz is Test {
     The correct amounts of token0 and token1 should also be transferred to the recipient. 
     This invariant should be checked after every withdrawal.
     */
-    function invariant_checkLpSupplyBeforeAndAfterWithdraw(
+    //invariant_checkLpSupplyBeforeAndAfterWithdraw
+    function test_2(
         uint256 amount0,
         uint256 amount1
     ) public {
@@ -298,7 +301,7 @@ contract Fuzz is Test {
 
         mintTokens();
         uint256 lp = Deposit(amount0, amount1, address(this));
-        vm.roll(block.number + 10);
+        vm.warp(block.timestamp + 100 minutes);
 
         uint256 preLP = fuzz.UAV()._totalSupply();
         Withdraw(lp, address(this), false);
@@ -313,7 +316,9 @@ contract Fuzz is Test {
     // the balance of token0 and token1 in the Unipilot position on Uniswap, and that there are no
     // discrepancies or unexpected errors in the calculation.
     // This invariant been written under the consideration when there is no liquidity minted.
-    function invariant_MintedLpSameAsUnipilot(
+
+    //invariant_MintedLpSameAsUnipilot
+    function test_3A(
         uint256 Amount0,
         uint256 Amount1
     ) public {
@@ -345,7 +350,8 @@ contract Fuzz is Test {
     }
 
     //This invariant been written under the consideration when there is liquidity already minted.
-    function invariant_MintedLp_Reserves(
+    //invariant_MintedLp_Reserves
+    function test_3B(
         uint256 Amount0,
         uint256 Amount1
     ) public {
@@ -378,7 +384,8 @@ contract Fuzz is Test {
         assertEq(Selflp, Unipilotlp);
     }
 
-    function invariant_MintedLp_ReservesAndFee(
+    //invariant_MintedLp_ReservesAndFee
+    function test_3C(
         uint256 Amount0,
         uint256 Amount1,
         uint256 swapAmount
@@ -436,7 +443,9 @@ contract Fuzz is Test {
     // ct-lt = y
     // ut-lt = z
     // x+y = z
-    function invariant_Ticks(
+
+    //invariant_Ticks
+    function test_4(
         uint256 Amount0,
         uint256 Amount1,
         uint256 swapAmount
@@ -475,7 +484,8 @@ contract Fuzz is Test {
     }
 
     //Post deposit Lps should be less then pre deposit Lp because of compounded fees
-    function invariant_Diff_Lps(
+    //invariant_Diff_Lps
+    function test_5(
         uint256 Amount0,
         uint256 Amount1,
         uint256 swapAmount
@@ -514,7 +524,8 @@ contract Fuzz is Test {
     //get ticks from ST
     //assert position back in range
 
-    function invariant_liquidityBackInRange(
+    //invariant_liquidityBackInRange
+    function test_6(
         uint256 Amount0,
         uint256 Amount1,
         uint256 swapAmount
@@ -528,19 +539,19 @@ contract Fuzz is Test {
         //Depositing preLiqudity to hit the second condtion of calculateLpShares
         Deposit(Amount0, Amount1, address(this));
         vm.warp(block.timestamp + 100);
-       // Deposit(100 ether, 100 ether, address(this));
-       // vm.warp(block.timestamp + 100);
+        Deposit(100 ether, 100 ether, address(this));
+        vm.warp(block.timestamp + 100);
         (int24 btl, int24 btu, , , , ) = fuzz.ST().getTicks(
             fuzz.pool()
         );
 
         //minting on Uniswap to create depth in pool
         for(int24 i; i<10; i++){
-        _mint(btl - i*1000, btu + i*2000);
+        _mint( btl-20000, btu+20000);
         vm.warp(block.timestamp + 100);
         }
         //too much swaps will make liquidity out of range
-        for(uint i; i<50; i++){
+        for(uint i; i<20; i++){
         swapToken(true, int256(swapAmount));
         vm.warp(block.timestamp + 100);
         }
@@ -555,10 +566,8 @@ contract Fuzz is Test {
          uint256 balance0 = token1.balanceOf(fuzz.pool());
          uint256 balance1 = token0.balanceOf(fuzz.pool());
 
-         Rebalance(uint8(50));
-       // fuzz.UAV().readjustLiquidity(uint8(50));
-        // token0.balanceOf(fuzz.pool());
-        // token1.balanceOf(fuzz.pool());
+          Rebalance(uint8(50));
+      
 
     }
 }
