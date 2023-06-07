@@ -182,6 +182,30 @@ contract Fuzz is Test {
         }
     }
 
+    function computePositionFee()
+        internal
+        returns (uint256 fees0, uint256 fees1)
+    {
+        vm.startPrank(address(fuzz.UAV()));
+        (int24 btl, int24 btu, , ) = fuzz.UAV().ticksData();
+        uint128 liquidity = UniswapPoolActions.updatePosition(
+            fuzz.UAV().pool(),
+            btl,
+            btu,
+            address(fuzz.UAV())
+        );
+
+        if (liquidity > 0) {
+            (, , fees0, fees1) = ULM.collectableAmountsInPosition(
+                fuzz.UAV().pool(),
+                btl,
+                btu,
+                address(fuzz.UAV())
+            );
+        }
+        vm.stopPrank();
+    }
+
     function computeLpShares(
         uint256 amount0Max,
         uint256 amount1Max,
@@ -240,16 +264,6 @@ contract Fuzz is Test {
 
     ////////////////////////////////////////////////////////////////////////////////
 
-    // function testMain(uint256 amount0, uint256 amount1, uint256 swap) public {
-    //     //invariant_MintedLp_ReservesAndFee(amount0, amount1, swap);
-    //     //invariant_MintedLp_Reserves(1 ether, 1 ether);
-    //     //invariant_Ticks(amount0, amount1, swap);
-    //     //invariant_Diff_Lps(amount0, amount1, swap);
-    //     //invariant_MintedLpSameAsUnipilot(amount0, amount1);
-    //     // invariant_liquidityBackInRange(amount0, amount1, swap);
-    //     test_2(amount0, amount1);
-    // }
-
     /*
     Depositing tokens should increase the total supply of LP tokens and the balance of the 
     contract in both token0 and token1:
@@ -260,10 +274,7 @@ contract Fuzz is Test {
     */
 
     //invariant_checkLpSupplyBeforeAndAfterDeposit
-    function test_1(
-        uint256 amount0,
-        uint256 amount1
-    ) public {
+    function test_1(uint256 amount0, uint256 amount1) public {
         amount0 = bound(amount0, 1 ether, 1e10 ether);
         amount1 = bound(amount1, 1 ether, 1e10 ether);
 
@@ -289,10 +300,7 @@ contract Fuzz is Test {
     This invariant should be checked after every withdrawal.
     */
     //invariant_checkLpSupplyBeforeAndAfterWithdraw
-    function test_2(
-        uint256 amount0,
-        uint256 amount1
-    ) public {
+    function test_2(uint256 amount0, uint256 amount1) public {
         amount0 = bound(amount0, 1 ether, 1e10 ether);
         amount1 = bound(amount1, 1 ether, 1e10 ether);
 
@@ -318,10 +326,7 @@ contract Fuzz is Test {
     // This invariant been written under the consideration when there is no liquidity minted.
 
     //invariant_MintedLpSameAsUnipilot
-    function test_3A(
-        uint256 Amount0,
-        uint256 Amount1
-    ) public {
+    function test_3A(uint256 Amount0, uint256 Amount1) public {
         //PreConditions
         Amount0 = bound(Amount0, 1 ether, 1e10 ether);
         Amount1 = bound(Amount1, 1 ether, 1e10 ether);
@@ -351,10 +356,7 @@ contract Fuzz is Test {
 
     //This invariant been written under the consideration when there is liquidity already minted.
     //invariant_MintedLp_Reserves
-    function test_3B(
-        uint256 Amount0,
-        uint256 Amount1
-    ) public {
+    function test_3B(uint256 Amount0, uint256 Amount1) public {
         //PreConditions
         Amount0 = bound(Amount0, 1 ether, 1e10 ether);
         Amount1 = bound(Amount1, 1 ether, 1e10 ether);
@@ -378,9 +380,8 @@ contract Fuzz is Test {
         vm.warp(block.timestamp + 100);
         uint256 Unipilotlp = Deposit(Amount0, Amount1, address(this));
 
-        //check if you get the same amount
-        // emit lpShare(Selflp);
-        //emit lpShare(Unipilotlp);
+        emit lpShare(Selflp);
+        emit lpShare(Unipilotlp);
         assertEq(Selflp, Unipilotlp);
     }
 
@@ -428,7 +429,6 @@ contract Fuzz is Test {
         console.log(fuzz.UAV()._totalSupply());
 
         //then actually deposit that amount
-        // mintTokens();
         uint256 Unipilotlp = Deposit(Amount0, Amount1, address(this));
 
         //check if you get the same amount
@@ -520,7 +520,7 @@ contract Fuzz is Test {
     }
 
     //Make liquidity lot of range
-    //call readjust liquidity 
+    //call readjust liquidity
     //get ticks from ST
     //assert position back in range
 
@@ -529,7 +529,7 @@ contract Fuzz is Test {
         uint256 Amount0,
         uint256 Amount1,
         uint256 swapAmount
-        ) public {
+    ) public {
         Amount0 = bound(Amount0, 1 ether, 1e10 ether);
         Amount1 = bound(Amount1, 1 ether, 1e10 ether);
         swapAmount = bound(swapAmount, 1 ether, 1e10 ether);
@@ -541,19 +541,17 @@ contract Fuzz is Test {
         vm.warp(block.timestamp + 100);
         Deposit(100 ether, 100 ether, address(this));
         vm.warp(block.timestamp + 100);
-        (int24 btl, int24 btu, , , , ) = fuzz.ST().getTicks(
-            fuzz.pool()
-        );
+        (int24 btl, int24 btu, , , , ) = fuzz.ST().getTicks(fuzz.pool());
 
         //minting on Uniswap to create depth in pool
-        for(int24 i; i<10; i++){
-        _mint( btl-20000, btu+20000);
-        vm.warp(block.timestamp + 100);
+        for (int24 i; i < 10; i++) {
+            _mint(btl - 20000, btu + 20000);
+            vm.warp(block.timestamp + 100);
         }
         //too much swaps will make liquidity out of range
-        for(uint i; i<20; i++){
-        swapToken(true, int256(swapAmount));
-        vm.warp(block.timestamp + 100);
+        for (uint i; i < 20; i++) {
+            swapToken(true, int256(swapAmount));
+            vm.warp(block.timestamp + 100);
         }
 
         //fetching ticks again to mint liquidity around current ticks
@@ -562,12 +560,55 @@ contract Fuzz is Test {
         );
         emit tickData("baseLower  :", baseLower);
         emit tickData("baseUpper  :", baseUpper);
-        
-         uint256 balance0 = token1.balanceOf(fuzz.pool());
-         uint256 balance1 = token0.balanceOf(fuzz.pool());
 
-          Rebalance(uint8(50));
-      
+        uint256 balance0 = token1.balanceOf(fuzz.pool());
+        uint256 balance1 = token0.balanceOf(fuzz.pool());
+
+        Rebalance(uint8(50));
+    }
+
+    //test coumpounded fee is zero after withdraw/rebalance
+    function test_7(
+        uint256 Amount0,
+        uint256 Amount1,
+        uint256 swapAmount
+    ) public {
+        //Using bounded model
+        Amount0 = bound(Amount0, 1 ether, 1e10 ether);
+        Amount1 = bound(Amount1, 1 ether, 1e10 ether);
+        swapAmount = bound(swapAmount, 1 ether, 1e10 ether);
+        require(Amount0 >= 1 ether && Amount1 >= 1 ether, "Saving From ML");
+        require(address(token0) != address(0), "Mint tokens First");
+
+        //generating Lp tokens to withdraw
+        uint256 lp = Deposit(Amount0, Amount1, address(this));
+        vm.warp(block.timestamp + 100);
+        lp += Deposit(100 ether, 100 ether, address(this));
+        vm.warp(block.timestamp + 100);
+        (int24 btl, int24 btu, , , , ) = fuzz.ST().getTicks(fuzz.pool());
+
+        //minting on Uniswap to create depth in pool
+        for (int24 i; i < 10; i++) {
+            _mint(btl - 20000, btu + 20000);
+            vm.warp(block.timestamp + 100);
+        }
+        //swaps will generate fees to the unipilot position
+        for (uint i; i < 20; i++) {
+            swapToken(true, int256(swapAmount));
+            vm.warp(block.timestamp + 100);
+        }
+
+        //getting position fee
+        (uint256 preFee0, uint256 preFee1) = computePositionFee();
+        assert(preFee0 != 0 || preFee1 != 0);
+
+        //withdraw operation will compound fee
+        vm.warp(block.timestamp + 100 minutes);
+        Withdraw(lp, address(this), false);
+
+        //this makes sure that now unipilot has no fee in position
+        (uint256 postFee0, uint256 postFee1) = computePositionFee();
+        assertEq(postFee0, postFee1);
 
     }
 }
