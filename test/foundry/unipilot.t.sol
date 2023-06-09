@@ -42,6 +42,7 @@ contract Fuzz is Test {
         fuzz.Init(address(token0), address(token1), 1, 1, 1);
     }
 
+
     function _mint(int24 tl, int24 tu) private {
         UniswapV3Pool(fuzz.pool()).mint(
             address(this),
@@ -554,20 +555,18 @@ contract Fuzz is Test {
             vm.warp(block.timestamp + 100);
         }
 
-        //fetching ticks again to mint liquidity around current ticks
-        (int24 baseLower, int24 baseUpper, , , , ) = fuzz.ST().getTicks(
-            fuzz.pool()
-        );
-        emit tickData("baseLower  :", baseLower);
-        emit tickData("baseUpper  :", baseUpper);
-
-        uint256 balance0 = token1.balanceOf(fuzz.pool());
-        uint256 balance1 = token0.balanceOf(fuzz.pool());
-
+        //Making position back in range
         Rebalance(uint8(50));
+
+        //making sure that position is back in range 
+        (int24 tickLower, int24 tickUpper, , ) = fuzz.UAV().ticksData();
+        int24 currentTick = fuzz.getCurrentTick();
+        assert(tickLower < currentTick);
+        assert(tickUpper > currentTick);
     }
 
     //test coumpounded fee is zero after withdraw/rebalance
+    //invariant_rebalnce will make all fee back in position
     function test_7(
         uint256 Amount0,
         uint256 Amount1,
@@ -600,6 +599,7 @@ contract Fuzz is Test {
 
         //getting position fee
         (uint256 preFee0, uint256 preFee1) = computePositionFee();
+        //making sure that position has generated some fee from swaps
         assert(preFee0 != 0 || preFee1 != 0);
 
         //withdraw operation will compound fee

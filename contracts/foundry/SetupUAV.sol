@@ -1,37 +1,3 @@
-
-
-
-/*
-The total supply of LP tokens must always be greater than or equal to the minimum 
-initial shares required for the first deposit:
-This invariant ensures that the contract always has sufficient LP tokens to represent 
-the liquidity of the pool. If the total supply of LP tokens falls below the minimum 
-initial shares required for the first deposit, it means that there is not enough 
-liquidity in the pool to support trading. This invariant should be checked after 
-every deposit or withdrawal.
-
-
-
-The contract must ensure that the deviation of the current liquidity from the target liquidity 
-does not exceed a certain threshold before executing any function that involves modifying the 
-liquidity of the pool:
-This invariant ensures that the contract maintains the target liquidity range specified by the owner. 
-Before executing any function that involves modifying the liquidity of the pool, the contract should 
-check that the deviation of the current liquidity from the target liquidity does not exceed a certain 
-threshold. This invariant should be checked before executing any function that modifies the liquidity 
-of the pool.
-
-The contract must not allow the protocol governance address to be changed:
-This invariant ensures that the governance address of the protocol cannot be changed by anyone other 
-than the contract owner. This is important for ensuring the security and stability of the protocol. 
-This invariant should be checked for any function that allows the governance address to be modified.
-
-uncompounded fee before rebalnce will always be greator then after rebalance
-
-uncompounded fee before withdraw will always be greator then after withdraw
-
-*/
-
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.7.6;
 pragma abicoder v2;
@@ -88,7 +54,6 @@ contract SetupUAV is SetupUAF {
         encodedPriceSqrt = uint160(priceSqrt << 96) / 1e9;
     }
 
-    event here(string);
     event fee(uint24);
     event Sqrt(uint160);
 
@@ -127,7 +92,6 @@ contract SetupUAV is SetupUAF {
         pools[0] = pool;
         sTypes[0] = _vaultStrategy;
         bMults[0] = 100;
-        emit here("here");
         ST.setBaseTicks(pools, sTypes, bMults);
         ST.setMaxTwapDeviation(int24(9000));
         UAV.toggleOperator(msg.sender);

@@ -9,10 +9,7 @@ import "../dependencies/WETH.sol";
 import { UnipilotActiveFactory } from "../UnipilotActiveFactory.sol";
 import { UnipilotStrategy } from "../UnipilotStrategy.sol";
 
-contract indexfund {
-    mapping(address => uint256) private balance0;
-    mapping(address => uint256) private balance1;
-}
+contract indexfund {}
 
 contract SetupUAF {
     UniswapV3Factory public factory;
